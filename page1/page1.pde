@@ -19,22 +19,22 @@ int doorX3 = doorX2, doorY3 = doorY2-height*7/15;
 int doorX4 = doorX1, doorY4 = doorY1-height*7/15;
 
 //Window Frame Variables
-int windowX1 = width*61/100, windowY1 = height*50/100;
-int windowX2 = width*70/100, windowY2 = height*58/110;
+int windowX1 = width*610/1000, windowY1 = height*500/1000;
+int windowX2 = width*700/1000, windowY2 = height*580/1100;
 int windowX3 = windowX2, windowY3 = windowY2-height*7/40;
-int windowX4 = windowX1, windowY4 = windowY2-height*119/600;
+int windowX4 = windowX1, windowY4 = windowY1-height*7/40;
 
 //Window External Variables
 int outsideX1 = width*615/1000, outsideY1 = height*492/1000;
 int outsideX2 = width*695/1000, outsideY2 = height*515/1000;
-int outsideX3 = outsideX2, outsideY3 = height*570/1000-height*5/24;
-int outsideX4 = outsideX1, outsideY4 = height*570/1000-height*137/600;
+int outsideX3 = outsideX2, outsideY3 = outsideY2-height*3/24;
+int outsideX4 = outsideX1, outsideY4 = outsideY1-height*3/24;
 
 //Bed Frame Variables
-int footX1 = width*300/1000, footY1 = height*900/1000;
-int footX2 = width*400/1000, footY2 = height*900/1000;
-int footX3 = outsideX2, footY3 = height*500/1000-height*5/24;
-int footX4 = outsideX1, footY4 = height*500/1000-height*137/600;
+int footX1 = width*250/1000, footY1 = height*900/1000;
+int footX2 = width*420/1000, footY2 = height*969/1000;
+int footX3 = footX2, footY3 = footY2-height*2/15;
+int footX4 = footX1, footY4 = footY1-height*2/15;
 
 //Drawing Room Lines
 line(roomlineXStart, roomlineYStart, roomlineXEnd1, roomlineYEnd1);
