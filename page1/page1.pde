@@ -2,9 +2,11 @@
 size(1024, 600);
 //fullScreen();
 
+strokeWeight(0);
+
 //Color Variables
-color brown = #724730, blue = #08ECFF, white = #FFFFFF, doorColor = brown, windowSky = blue, defaultColor = white, 
-gray = #989898, bedFrame = gray, mattressColor = white;
+color brown = #724730, blue = #08ECFF, white = #FFFFFF, oak = #BB8141, doorColor = brown, windowSky = blue, defaultColor = white, 
+gray = #989898, bedFrame = gray, mattressColor = white, deskColor = oak;
 
 //Room Line Variables
 int roomlineXStart = width*0, roomlineYStart = height;
@@ -17,6 +19,8 @@ int doorX1 = width*1/22, doorY1 = height*982/1000;
 int doorX2 = width*1/6, doorY2 = height*934/1000;
 int doorX3 = doorX2, doorY3 = doorY2-height*7/15;
 int doorX4 = doorX1, doorY4 = doorY1-height*7/15;
+
+//Door Detail Variables
 
 //Window Frame Variables
 int windowX1 = width*610/1000, windowY1 = height*544/1000;
@@ -78,6 +82,50 @@ int minuteX2 = width*300/1000, minuteY2 = height*406/1000;
 int secondX1 = clockx, secondY1 = clocky;
 int secondX2 = width*282/1000, secondY2 = height*445/1000;
 
+//Desk Variables (Top)
+int desktopX1 = width*750/1000, desktopY1 = height*759/1000;
+int desktopX2 = width*879/1000, desktopY2 = height*808/1000;
+int desktopX3 = width*810/1000, desktopY3 = height*846/1000;
+int desktopX4 = width*670/1000, desktopY4 = height*790/1000;
+
+//Desk Variables (First Leg)
+int leg1X1 = desktopX3, leg1Y1 = desktopY3;
+int leg1X2 = width*822/1000, leg1Y2 = height*839/1000;
+int leg1X3 = leg1X2, leg1Y3 = leg1Y2+height*1455/10000;
+int leg1X4 = desktopX3, leg1Y4 = height*990/1000;
+//Second Half of the First Leg
+int leg2X1 = desktopX3, leg2Y1 = desktopY3;
+int leg2X2 = width*798/1000, leg2Y2 = height*840/1000;
+int leg2X3 = leg2X2, leg2Y3 = leg1Y3;
+int leg2X4 = desktopX3, leg2Y4 = leg1Y4;
+
+//Desk Variables (Second Leg)
+int leg3X1 = desktopX4, leg3Y1 = desktopY4;
+int leg3X2 = width*682/1000, leg3Y2 = height*796/1000;
+int leg3X3 = leg3X2, leg3Y3 = height*939/1000;
+int leg3X4 = desktopX4, leg3Y4 = height*934/1000;
+//Second Half of the Second Leg
+int leg4X1 = leg3X2, leg4Y1 = desktopY4;
+int leg4X2 = width*694/1000, leg4Y2 = leg3Y2;
+int leg4X3 = leg4X2, leg4Y3 = height*935/1000;
+int leg4X4 = leg3X2, leg4Y4 = height*940/1000;
+
+//Desk Variables (Third Leg)
+int leg5X1 = desktopX2, leg5Y1 = desktopY2;
+int leg5X2 = width*694/1000, leg5Y2 = leg3Y2;
+int leg5X3 = leg4X2, leg5Y3 = height*935/1000;
+int leg5X4 = desktopX2, leg5Y4 = height*940/1000;
+//Second Half of the Third Leg
+int leg6X1 = leg3X2, leg6Y1 = desktopY4;
+int leg6X2 = width*694/1000, leg6Y2 = leg3Y2;
+int leg6X3 = leg4X2, leg6Y3 = height*935/1000;
+int leg6X4 = leg3X2, leg6Y4 = height*940/1000;
+
+//Guide Line
+int coordX1 = leg3X2, coordY1 = height*940/1000;
+int coordX2 = desktopX1, coordY2 = height*910/1000;
+
+
 //Drawing Room Lines
 line(roomlineXStart, roomlineYStart, roomlineXEnd1, roomlineYEnd1);
 line(roomlineXEnd1, roomlineYEnd1, roomlineXEnd2, roomlineYEnd2);
@@ -123,8 +171,36 @@ line(minuteX1, minuteY1, minuteX2, minuteY2);
 strokeWeight(1);
 line(secondX1, secondY1, secondX2, secondY2);
 
+strokeWeight(0);
+
+//Drawing Occluded Desk Legs
+fill(deskColor);
+quad(leg4X1, leg4Y1, leg4X2, leg4Y2, leg4X3, leg4Y3, leg4X4, leg4Y4); //Leg2 Second Half
+
+
+//Drawing the desk
+fill(deskColor);
+quad(desktopX1, desktopY1, desktopX2, desktopY2, desktopX3, desktopY3, desktopX4, desktopY4);
+
+//Drawing the desk legs (8 quadrilaterals)
+fill(deskColor);
+quad(leg1X1, leg1Y1, leg1X2, leg1Y2, leg1X3, leg1Y3, leg1X4, leg1Y4); //Leg1
+quad(leg2X1, leg2Y1, leg2X2, leg2Y2, leg2X3, leg2Y3, leg2X4, leg2Y4);
+quad(leg3X1, leg3Y1, leg3X2, leg3Y2, leg3X3, leg3Y3, leg3X4, leg3Y4); //Leg2
+quad(leg5X1, leg5Y1, leg5X2, leg5Y2, leg5X3, leg5Y3, leg5X4, leg5Y4); //Leg3
+quad(leg6X1, leg6Y1, leg6X2, leg6Y2, leg6X3, leg6Y3, leg6X4, leg6Y4);
+quad(leg1X1, leg1Y1, leg1X2, leg1Y2, leg1X3, leg1Y3, leg1X4, leg1Y4); //Leg4
+quad(leg1X1, leg1Y1, leg1X2, leg1Y2, leg1X3, leg1Y3, leg1X4, leg1Y4);
+
+
+
+
 //Slope Calculator (y2-y1)/(x2-x1) 
 //roomLine slope is 0.234375
 //reasonable deviation is < 0.05
-double rise = ((mtopY3)-(mtopY2)), run = ((mtopX3)-(mtopX2));
+double rise = ((coordY2)-(coordY1)), run = ((coordX2)-(coordX1));
 print(rise + "/" + run);
+
+strokeWeight(1);
+//Drawing Guide Lines
+line(coordX1, coordY1, coordX2, coordY2);
