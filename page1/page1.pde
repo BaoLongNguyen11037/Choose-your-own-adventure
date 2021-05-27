@@ -111,18 +111,29 @@ int leg4X3 = leg4X2, leg4Y3 = height*935/1000;
 int leg4X4 = leg3X2, leg4Y4 = height*940/1000;
 
 //Desk Variables (Third Leg)
-int leg5X1 = desktopX2, leg5Y1 = desktopY2;
-int leg5X2 = width*694/1000, leg5Y2 = leg3Y2;
-int leg5X3 = leg4X2, leg5Y3 = height*935/1000;
-int leg5X4 = desktopX2, leg5Y4 = height*940/1000;
+int leg5X1 = desktopX1, leg5Y1 = desktopY2;
+int leg5X2 = width*762/1000, leg5Y2 = leg3Y2;
+int leg5X3 = leg5X2, leg5Y3 = height*905/1000;
+int leg5X4 = desktopX1, leg5Y4 = height*910/1000;
 //Second Half of the Third Leg
-int leg6X1 = leg3X2, leg6Y1 = desktopY4;
-int leg6X2 = width*694/1000, leg6Y2 = leg3Y2;
-int leg6X3 = leg4X2, leg6Y3 = height*935/1000;
-int leg6X4 = leg3X2, leg6Y4 = height*940/1000;
+int leg6X1 = desktopX1, leg6Y1 = desktopY2;
+int leg6X2 = width*738/1000, leg6Y2 = leg3Y2;
+int leg6X3 = leg6X2, leg6Y3 = leg5Y3;
+int leg6X4 = desktopX1, leg6Y4 = leg5Y4;
+
+//Desk Variables (Fourth Leg)
+int leg7X1 = desktopX2, leg7Y1 = desktopY2;
+int leg7X2 = width*867/1000, leg7Y2 = height*805/1000;
+int leg7X3 = leg7X2, leg7Y3 = height*905/1000;
+int leg7X4 = desktopX2, leg7Y4 = height*963/1000;
+//Second Half of the Fourth Leg
+int leg8X1 = desktopX2, leg8Y1 = desktopY2;
+int leg8X2 = width*867/1000, leg8Y2 = height*814/1000;
+int leg8X3 = leg8X2, leg8Y3 = height*960/1000;
+int leg8X4 = desktopX2, leg8Y4 = leg7Y4;
 
 //Guide Line
-int coordX1 = leg3X2, coordY1 = height*940/1000;
+int coordX1 = desktopX2, coordY1 = height*963/1000;
 int coordX2 = desktopX1, coordY2 = height*910/1000;
 
 
@@ -176,7 +187,9 @@ strokeWeight(0);
 //Drawing Occluded Desk Legs
 fill(deskColor);
 quad(leg4X1, leg4Y1, leg4X2, leg4Y2, leg4X3, leg4Y3, leg4X4, leg4Y4); //Leg2 Second Half
-
+quad(leg5X1, leg5Y1, leg5X2, leg5Y2, leg5X3, leg5Y3, leg5X4, leg5Y4); //Leg3
+quad(leg6X1, leg6Y1, leg6X2, leg6Y2, leg6X3, leg6Y3, leg6X4, leg6Y4);
+quad(leg7X1, leg7Y1, leg7X2, leg7Y2, leg7X3, leg7Y3, leg7X4, leg7Y4); //Leg4 First Half
 
 //Drawing the desk
 fill(deskColor);
@@ -187,10 +200,7 @@ fill(deskColor);
 quad(leg1X1, leg1Y1, leg1X2, leg1Y2, leg1X3, leg1Y3, leg1X4, leg1Y4); //Leg1
 quad(leg2X1, leg2Y1, leg2X2, leg2Y2, leg2X3, leg2Y3, leg2X4, leg2Y4);
 quad(leg3X1, leg3Y1, leg3X2, leg3Y2, leg3X3, leg3Y3, leg3X4, leg3Y4); //Leg2
-quad(leg5X1, leg5Y1, leg5X2, leg5Y2, leg5X3, leg5Y3, leg5X4, leg5Y4); //Leg3
-quad(leg6X1, leg6Y1, leg6X2, leg6Y2, leg6X3, leg6Y3, leg6X4, leg6Y4);
-quad(leg1X1, leg1Y1, leg1X2, leg1Y2, leg1X3, leg1Y3, leg1X4, leg1Y4); //Leg4
-quad(leg1X1, leg1Y1, leg1X2, leg1Y2, leg1X3, leg1Y3, leg1X4, leg1Y4);
+quad(leg8X1, leg8Y1, leg8X2, leg8Y2, leg8X3, leg8Y3, leg8X4, leg8Y4); //Leg4 Second Half
 
 
 
