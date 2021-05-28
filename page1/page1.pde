@@ -186,18 +186,16 @@ int leg8X3 = leg8X2, leg8Y3 = height*959/1000;
 int leg8X4 = desktopX2, leg8Y4 = height*950/1000;
 
 //Keyboard Variables
-int keyboardX1 = 0, keyboardY1 = 0;
-int keyboardX2 = 0, keyboardY2 = 0;
-int keyboardX3 = 0, keyboardY3 = 0;
-int keyboardX4 = 0, keyboardY4 = 0;
+int keyboardX1 = width*760/1000, keyboardY1 = height*765/1000;
+int keyboardX2 = width*855/1000, keyboardY2 = height*800/1000;
+int keyboardX3 = width*800/1000, keyboardY3 = height*830/1000;
+int keyboardX4 = width*705/1000, keyboardY4 = height*795/1000;
 
 //Screen Variables
 int screenX1 = 0, screenY1 = 0;
 int screenX2 = 0, screenY2 = 0;
 int screenX3 = 0, screenY3 = 0;
 int screenX4 = 0, screenY4 = 0;
-
-//Monitor Stand Variables
 
 //Guide Line 1
 int coordX1 = leg8X2, coordY1 = leg8Y3;
@@ -287,9 +285,10 @@ quad(leg2X1, leg2Y1, leg2X2, leg2Y2, leg2X3, leg2Y3, leg2X4, leg2Y4);
 quad(leg3X1, leg3Y1, leg3X2, leg3Y2, leg3X3, leg3Y3, leg3X4, leg3Y4); //Leg2
 quad(leg8X1, leg8Y1, leg8X2, leg8Y2, leg8X3, leg8Y3, leg8X4, leg8Y4); //Leg4 Second Half
 
-//ELLO COMPEWTORRR (wtf)
+//Drawing the Computer
 fill(pcColor);
-
+quad(keyboardX1, keyboardY1, keyboardX2, keyboardY2, keyboardX3, keyboardY3, keyboardX4, keyboardY4);
+quad(screenX1, screenY1, screenX2, screenY2, screenX3, screenY3, screenX4, screenY4);
 
 //Slope Calculator (y2-y1)/(x2-x1) 
 //roomLine slope is 0.234375
