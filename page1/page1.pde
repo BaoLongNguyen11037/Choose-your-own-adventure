@@ -5,8 +5,9 @@ size(1024, 600);
 strokeWeight(0);
 
 //Color Variables
-color brown = #724730, blue = #08ECFF, white = #FFFFFF, oak = #BB8141, doorColor = brown, windowSky = blue, defaultColor = white, 
-gray = #989898, bedFrame = gray, mattressColor = white, deskColor = oak;
+color brown = #724730, blue = #08ECFF, white = #FFFFFF, oak = #BB8141, lightBrown = #9B5F42, gray = #989898, gold = #FFD00F, darkBlue = #000EFC, black = #000000,
+doorColor = brown, windowSky = blue, defaultColor = white, bedFrame = gray, mattressColor = white, deskColor = oak, panelColor = lightBrown, dkColor = gold,
+blanketColor = darkBlue, pcColor = black;
 
 //Room Line Variables
 int roomlineXStart = width*0, roomlineYStart = height;
@@ -20,7 +21,47 @@ int doorX2 = width*1/6, doorY2 = height*934/1000;
 int doorX3 = doorX2, doorY3 = doorY2-height*7/15;
 int doorX4 = doorX1, doorY4 = doorY1-height*7/15;
 
-//Door Detail Variables
+//Door Panel 1 Variables
+int doorPanel1X1 = width*60/1000, doorPanel1Y1 = height*530/1000;
+int doorPanel1X2 = width*100/1000, doorPanel1Y2 = height*514/1000;
+int doorPanel1X3 = doorPanel1X2, doorPanel1Y3 = doorPanel1Y2+height*80/1000;
+int doorPanel1X4 = doorPanel1X1, doorPanel1Y4 = doorPanel1Y1+height*80/1000;
+
+//Door Panel 2 Variables
+int doorPanel2X1 = width*113/1000, doorPanel2Y1 = height*509/1000;
+int doorPanel2X2 = width*153/1000, doorPanel2Y2 = height*493/1000;
+int doorPanel2X3 = doorPanel2X2, doorPanel2Y3 = doorPanel2Y2+height*80/1000;
+int doorPanel2X4 = doorPanel2X1, doorPanel2Y4 = doorPanel2Y1+height*80/1000;
+
+//Door Panel 3 Variables
+int doorPanel3X1 = doorPanel1X1, doorPanel3Y1 = height*630/1000;
+int doorPanel3X2 = doorPanel1X2, doorPanel3Y2 = height*614/1000;
+int doorPanel3X3 = doorPanel3X2, doorPanel3Y3 = doorPanel3Y2+height*120/1000;
+int doorPanel3X4 = doorPanel3X1, doorPanel3Y4 = doorPanel3Y1+height*120/1000;
+
+//Door Panel 4 Variables
+int doorPanel4X1 = doorPanel2X1, doorPanel4Y1 = height*609/1000;
+int doorPanel4X2 = doorPanel2X2, doorPanel4Y2 = height*593/1000;
+int doorPanel4X3 = doorPanel4X2, doorPanel4Y3 = doorPanel4Y2+height*120/1000;
+int doorPanel4X4 = doorPanel4X1, doorPanel4Y4 = doorPanel4Y1+height*120/1000;
+
+//Door Panel 5 Variables
+int doorPanel5X1 = doorPanel1X1, doorPanel5Y1 = height*800/1000;
+int doorPanel5X2 = doorPanel1X2, doorPanel5Y2 = height*784/1000;
+int doorPanel5X3 = doorPanel5X2, doorPanel5Y3 = doorPanel5Y2+height*120/1000;
+int doorPanel5X4 = doorPanel5X1, doorPanel5Y4 = doorPanel5Y1+height*120/1000;
+
+//Door Panel 6 Variables
+int doorPanel6X1 = doorPanel2X1, doorPanel6Y1 = height*779/1000;
+int doorPanel6X2 = doorPanel2X2, doorPanel6Y2 = height*763/1000;
+int doorPanel6X3 = doorPanel6X2, doorPanel6Y3 = doorPanel6Y2+height*120/1000;
+int doorPanel6X4 = doorPanel6X1, doorPanel6Y4 = doorPanel6Y1+height*120/1000;
+
+//Doorknob Variables
+int doorKnobx = width*157/1000;
+int doorKnoby = height*737/1000;
+int doorKnobw = width*15/1000;
+int doorKnobh = height*30/1000;
 
 //Window Frame Variables
 int windowX1 = width*610/1000, windowY1 = height*544/1000;
@@ -44,25 +85,37 @@ int footX4 = footX1, footY4 = footY1-height*2/15;
 int sideX1 = footX2, sideY1 = footY2;
 int sideX2 = footX3, sideY2 = footY3+30;
 int sideX3 = width*650/1000, sideY3 = height*789/1000;
-int sideX4 = width*650/1000, sideY4 = height*860/1000;
+int sideX4 = sideX3, sideY4 = height*860/1000;
 
 //Bed Frame Variables (head)
 int headX1 = width*500/1000, headY1 = height*800/1000;
-int headX2 = width*650/1000, headY2 = height*860/1000;
-int headX3 = width*650/1000, headY3 = height*690/1000;
-int headX4 = width*500/1000, headY4 = height*630/1000;
+int headX2 = sideX3, headY2 = height*860/1000;
+int headX3 = headX2, headY3 = height*690/1000;
+int headX4 = headX1, headY4 = height*630/1000;
 
 //Mattress Variables (side)
 int msideX1 = footX2, msideY1 = footY2;
 int msideX2 = footX3, msideY2 = footY3+height*1/30;
 int msideX3 = width*650/1000, msideY3 = height*776/1000;
-int msideX4 = width*650/1000, msideY4 = height*860/1000;
+int msideX4 = msideX3, msideY4 = height*860/1000;
 
 //Mattress Variables (top)
 int mtopX1 = footX2, mtopY1 = msideY2;
 int mtopX2 = footX1+height/height*2, mtopY2 = footY3-height*15/1000;
 int mtopX3 = width*500/1000, mtopY3 = height*720/1000;
 int mtopX4 = width*650/1000, mtopY4 = height*776/1000;
+
+//Blanket Variables (top)
+int blanketTopX1 = footX2, blanketTopY1 = msideY2;
+int blanketTopX2 = footX1+height/height*2, blanketTopY2 = footY3-height*15/1000;
+int blanketTopX3 = width*443/1000, blanketTopY3 = height*745/1000;
+int blanketTopX4 = width*590/1000, blanketTopY4 = height*800/1000;
+
+//Blanket Variables (side)
+int blanketSideX1 = footX2, blanketSideY1 = height*929/1000;
+int blanketSideX2 = footX3, blanketSideY2 = footY3+height*1/30;
+int blanketSideX3 = blanketTopX4, blanketSideY3 = blanketTopY4;
+int blanketSideX4 = blanketTopX4, blanketSideY4 = height*860/1000;
 
 //Clock Variables (frame)
 int clockx = width*300/1000;
@@ -122,19 +175,37 @@ int leg6X3 = leg6X2, leg6Y3 = leg5Y3;
 int leg6X4 = desktopX1, leg6Y4 = leg5Y4;
 
 //Desk Variables (Fourth Leg)
-int leg7X1 = desktopX2, leg7Y1 = desktopY2;
-int leg7X2 = width*867/1000, leg7Y2 = height*805/1000;
-int leg7X3 = leg7X2, leg7Y3 = height*905/1000;
-int leg7X4 = desktopX2, leg7Y4 = height*963/1000;
+int leg7X1 = width*867/1000, leg7Y1 = desktopY2;
+int leg7X2 = width*855/1000, leg7Y2 = height*805/1000;
+int leg7X3 = leg7X2, leg7Y3 = height*953/1000;
+int leg7X4 = leg7X1, leg7Y4 = height*959/1000;
 //Second Half of the Fourth Leg
 int leg8X1 = desktopX2, leg8Y1 = desktopY2;
 int leg8X2 = width*867/1000, leg8Y2 = height*814/1000;
-int leg8X3 = leg8X2, leg8Y3 = height*960/1000;
-int leg8X4 = desktopX2, leg8Y4 = leg7Y4;
+int leg8X3 = leg8X2, leg8Y3 = height*959/1000;
+int leg8X4 = desktopX2, leg8Y4 = height*950/1000;
 
-//Guide Line
-int coordX1 = desktopX2, coordY1 = height*963/1000;
+//Keyboard Variables
+int keyboardX1 = 0, keyboardY1 = 0;
+int keyboardX2 = 0, keyboardY2 = 0;
+int keyboardX3 = 0, keyboardY3 = 0;
+int keyboardX4 = 0, keyboardY4 = 0;
+
+//Screen Variables
+int screenX1 = 0, screenY1 = 0;
+int screenX2 = 0, screenY2 = 0;
+int screenX3 = 0, screenY3 = 0;
+int screenX4 = 0, screenY4 = 0;
+
+//Monitor Stand Variables
+
+//Guide Line 1
+int coordX1 = leg8X2, coordY1 = leg8Y3;
 int coordX2 = desktopX1, coordY2 = height*910/1000;
+
+//Guide Line 2
+int coord2X1 = desktopX2, coord2Y1 = height*950/1000;
+int coord2X2 = desktopX3, coord2Y2 = leg1Y4;
 
 
 //Drawing Room Lines
@@ -147,6 +218,19 @@ fill(doorColor);
 quad(doorX1, doorY1, doorX2, doorY2, doorX3, doorY3, doorX4, doorY4);
 fill(defaultColor);
 
+//Drawing the door panels
+fill(panelColor);
+quad(doorPanel1X1, doorPanel1Y1, doorPanel1X2, doorPanel1Y2, doorPanel1X3, doorPanel1Y3, doorPanel1X4, doorPanel1Y4);
+quad(doorPanel2X1, doorPanel2Y1, doorPanel2X2, doorPanel2Y2, doorPanel2X3, doorPanel2Y3, doorPanel2X4, doorPanel2Y4);
+quad(doorPanel3X1, doorPanel3Y1, doorPanel3X2, doorPanel3Y2, doorPanel3X3, doorPanel3Y3, doorPanel3X4, doorPanel3Y4);
+quad(doorPanel4X1, doorPanel4Y1, doorPanel4X2, doorPanel4Y2, doorPanel4X3, doorPanel4Y3, doorPanel4X4, doorPanel4Y4);
+quad(doorPanel5X1, doorPanel5Y1, doorPanel5X2, doorPanel5Y2, doorPanel5X3, doorPanel5Y3, doorPanel5X4, doorPanel5Y4);
+quad(doorPanel6X1, doorPanel6Y1, doorPanel6X2, doorPanel6Y2, doorPanel6X3, doorPanel6Y3, doorPanel6X4, doorPanel6Y4);
+fill(dkColor);
+
+//Drawing the doorknob
+ellipse(doorKnobx, doorKnoby, doorKnobw, doorKnobh);
+
 //Drawing the window frame
 fill(defaultColor);
 quad(windowX1, windowY1, windowX2, windowY2, windowX3, windowY3, windowX4, windowY4);
@@ -157,18 +241,19 @@ fill(windowSky);
 quad(outsideX1, outsideY1, outsideX2, outsideY2, outsideX3, outsideY3, outsideX4, outsideY4);
 fill(defaultColor);
 
-//Drawing the mattress
-fill(defaultColor);
-
 //Drawing the bed frame
 fill(bedFrame);
 quad(headX1, headY1, headX2, headY2, headX3, headY3, headX4, headY4);
-fill(mattressColor);
+fill(mattressColor); //Drawing the mattress
 quad(msideX1, msideY1, msideX2, msideY2, msideX3, msideY3, msideX4, msideY4);
 quad(mtopX1, mtopY1, mtopX2, mtopY2, mtopX3, mtopY3, mtopX4, mtopY4);
+fill(blanketColor);
+quad(blanketTopX1, blanketTopY1, blanketTopX2, blanketTopY2, blanketTopX3, blanketTopY3, blanketTopX4, blanketTopY4);
 fill(bedFrame);
 quad(footX1, footY1, footX2, footY2, footX3, footY3, footX4, footY4);
 quad(sideX1, sideY1, sideX2, sideY2, sideX3, sideY3, sideX4, sideY4);
+fill(blanketColor);
+quad(blanketSideX1, blanketSideY1, blanketSideX2, blanketSideY2, blanketSideX3, blanketSideY3, blanketSideX4, blanketSideY4);
 fill(defaultColor);
 
 //Drawing the clock frame
@@ -202,15 +287,19 @@ quad(leg2X1, leg2Y1, leg2X2, leg2Y2, leg2X3, leg2Y3, leg2X4, leg2Y4);
 quad(leg3X1, leg3Y1, leg3X2, leg3Y2, leg3X3, leg3Y3, leg3X4, leg3Y4); //Leg2
 quad(leg8X1, leg8Y1, leg8X2, leg8Y2, leg8X3, leg8Y3, leg8X4, leg8Y4); //Leg4 Second Half
 
-
+//ELLO COMPEWTORRR (wtf)
+fill(pcColor);
 
 
 //Slope Calculator (y2-y1)/(x2-x1) 
 //roomLine slope is 0.234375
 //reasonable deviation is < 0.05
-double rise = ((coordY2)-(coordY1)), run = ((coordX2)-(coordX1));
-print(rise + "/" + run);
+float rise = ((blanketSideY4)-(blanketSideY1)), run = ((blanketSideX4)-(blanketSideX1));
+println(rise + "/" + run);
+println("Measured Slope: " + abs(rise/run));
+println("Expected Slope: 0.234375");
 
 strokeWeight(1);
 //Drawing Guide Lines
-line(coordX1, coordY1, coordX2, coordY2);
+//line(coordX1, coordY1, coordX2, coordY2);
+//line(coord2X1, coord2Y1, coord2X2, coord2Y2);
