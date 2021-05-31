@@ -7,7 +7,7 @@ strokeWeight(0);
 //Color Variables
 color brown = #724730, blue = #08ECFF, white = #FFFFFF, oak = #BB8141, lightBrown = #9B5F42, gray = #989898, gold = #FFD00F, darkBlue = #000EFC, black = #000000,
 doorColor = brown, windowSky = blue, defaultColor = white, bedFrame = gray, mattressColor = white, deskColor = oak, panelColor = lightBrown, dkColor = gold,
-blanketColor = darkBlue, pcColor = black;
+blanketColor = darkBlue, pcColor = black, displayColor = gray;
 
 //Room Line Variables
 int roomlineXStart = width*0, roomlineYStart = height;
@@ -189,13 +189,25 @@ int leg8X4 = desktopX2, leg8Y4 = height*950/1000;
 int keyboardX1 = width*760/1000, keyboardY1 = height*765/1000;
 int keyboardX2 = width*855/1000, keyboardY2 = height*800/1000;
 int keyboardX3 = width*800/1000, keyboardY3 = height*830/1000;
-int keyboardX4 = width*705/1000, keyboardY4 = height*795/1000;
+int keyboardX4 = width*700/1000, keyboardY4 = height*790/1000;
 
 //Screen Variables
-int screenX1 = 0, screenY1 = 0;
-int screenX2 = 0, screenY2 = 0;
-int screenX3 = 0, screenY3 = 0;
-int screenX4 = 0, screenY4 = 0;
+int screenX1 = keyboardX2, screenY1 = height*695/1000;
+int screenX2 = keyboardX1, screenY2 = height*657/1000;
+int screenX3 = keyboardX1, screenY3 = keyboardY1;
+int screenX4 = keyboardX2, screenY4 = keyboardY2;
+
+//Screen Display Variables
+int displayX1 = width*850/1000, displayY1 = height*700/1000;
+int displayX2 = width*765/1000, displayY2 = height*665/1000;
+int displayX3 = displayX2, displayY3 = height*760/1000;
+int displayX4 = displayX1, displayY4 = height*795/1000;
+
+//Touchpad Variables
+int touchpadX1 = width*760/1000, touchpadY1 = height*765/1000;
+int touchpadX2 = width*855/1000, touchpadY2 = height*800/1000;
+int touchpadX3 = width*800/1000, touchpadY3 = height*830/1000;
+int touchpadX4 = width*700/1000, touchpadY4 = height*790/1000;
 
 //Guide Line 1
 int coordX1 = leg8X2, coordY1 = leg8Y3;
@@ -289,11 +301,14 @@ quad(leg8X1, leg8Y1, leg8X2, leg8Y2, leg8X3, leg8Y3, leg8X4, leg8Y4); //Leg4 Sec
 fill(pcColor);
 quad(keyboardX1, keyboardY1, keyboardX2, keyboardY2, keyboardX3, keyboardY3, keyboardX4, keyboardY4);
 quad(screenX1, screenY1, screenX2, screenY2, screenX3, screenY3, screenX4, screenY4);
+quad(touchpadX1, touchpadY1, touchpadX2, touchpadY2, touchpadX3, touchpadY3, touchpadX4, touchpadY4);
+fill(displayColor);
+quad(displayX1, displayY1, displayX2, displayY2, displayX3, displayY3, displayX4, displayY4);
 
 //Slope Calculator (y2-y1)/(x2-x1) 
 //roomLine slope is 0.234375
 //reasonable deviation is < 0.05
-float rise = ((blanketSideY4)-(blanketSideY1)), run = ((blanketSideX4)-(blanketSideX1));
+float rise = ((screenY2)-(screenY1)), run = ((screenX2)-(screenX1));
 println(rise + "/" + run);
 println("Measured Slope: " + abs(rise/run));
 println("Expected Slope: 0.234375");
