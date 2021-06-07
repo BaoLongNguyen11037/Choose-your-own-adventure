@@ -1,27 +1,22 @@
 size(1024, 600); 
-  
+
+//Drawing the wall intersections
+int[] lineX = { width*344/1024, width*656/1024, width*202/1024, width*798/1024 };
+int[] lineY = { height*742/1000, height*0/1000, height };
+
 strokeWeight(1);
-line(352, 445, 207, 600);;
-line(672, 444, 817, 600);
-line(352, 0, 352, 445);
-line(672., 0, 672, 445);
+line(lineX[0], lineY[0], lineX[2], lineY[2]);
+line(lineX[0], lineY[1], lineX[0], lineY[0]);
+line(lineX[1], lineY[0], lineX[3], lineY[2]);
+line(lineX[1], lineY[1], lineX[1], lineY[0]);
 strokeWeight(0);
 
 fill(-6730496);
-strokeWeight(1);
-pushMatrix();
-translate(259, 559);
-beginShape();
-vertex(-31, 21);
-vertex(-31, -300);
-vertex(72, -403);
-vertex(72, -93);
-endShape(CLOSE);
-popMatrix();
+quad(228, 580, 228, 259, 331, 156, 331, 466);
 
 fill(-6730496);
 pushMatrix();
-translate(827., 559);
+translate(827, 559);
 beginShape();
 vertex(-21, 31);
 vertex(-21, -310);
@@ -30,7 +25,7 @@ vertex(-114, -72);
 endShape(CLOSE);
 popMatrix();
 
-strokeWeight(1.0);
+strokeWeight(1);
 line(672, 383, 352, 383);
 strokeWeight(0);
 
@@ -58,12 +53,11 @@ popMatrix();
 fill(-8355712);
 pushMatrix();
 translate(465, 341);
-rotate(0.0);
 beginShape();
 vertex(0, 0);
 vertex(0, 10);
 vertex(72, 10);
-vertex(72, 0.0);
+vertex(72, 0);
 vertex(41, 0);
 vertex(41, -62);
 vertex(31, -62);
@@ -120,8 +114,8 @@ popMatrix();
 fill(-13421773);
 pushMatrix();
 translate(424, 352);
-rotate(0.0);
-ellipse(0,0,40, 40);
+rotate(0);
+ellipse(0, 0, 40, 40);
 popMatrix();
 
 fill(-3375053);
@@ -129,8 +123,8 @@ pushMatrix();
 translate(269, 248);
 beginShape();
 vertex(0, -10);
-vertex(-31., 21);
-vertex(-31., 134);
+vertex(-31, 21);
+vertex(-31, 134);
 vertex(0, 103);
 endShape(CLOSE);
 popMatrix();
@@ -138,12 +132,12 @@ popMatrix();
 fill(-3375053);
 pushMatrix();
 translate(269, 414);
-rotate(0.0);
+rotate(0);
 beginShape();
-vertex(0.0, -10);
+vertex(0, -10);
 vertex(-31, 21);
 vertex(-31, 134);
-vertex(0.0, 103);
+vertex(0, 103);
 endShape(CLOSE);
 popMatrix();
 
@@ -165,7 +159,7 @@ beginShape();
 vertex(0, -10);
 vertex(-31, 21);
 vertex(-31, 134);
-vertex(0.0, 103);
+vertex(0, 103);
 endShape(CLOSE);
 popMatrix();
 
@@ -173,7 +167,7 @@ fill(-3375053);
 pushMatrix();
 translate(724, 207);
 beginShape();
-vertex(0.0, -10);
+vertex(0, -10);
 vertex(31, 21);
 vertex(31, 134);
 vertex(0, 103);
@@ -206,7 +200,7 @@ fill(-3375053);
 pushMatrix();
 translate(724, 383);
 beginShape();
-vertex(0.0, -10);
+vertex(0, -10);
 vertex(31, 21);
 vertex(31, 134);
 vertex(0, 103);
