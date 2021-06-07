@@ -1,8 +1,12 @@
 size(1024, 600); 
 
 //Drawing the wall intersections
-int[] lineX = { width*344/1024, width*656/1024, width*202/1024, width*798/1024 };
+int[] lineX = { width*344/1000, width*656/1000, width*202/1000, width*798/1000 };
 int[] lineY = { height*742/1000, height*0/1000, height };
+
+//Drawing the Bathroom Door
+int[] door1X = { width*223/1000, width};
+int[] door1Y = { height*967/1000, height*432/1000, };
 
 strokeWeight(1);
 line(lineX[0], lineY[0], lineX[2], lineY[2]);
@@ -12,7 +16,7 @@ line(lineX[1], lineY[1], lineX[1], lineY[0]);
 strokeWeight(0);
 
 fill(-6730496);
-quad(228, 580, 228, 259, 331, 156, 331, 466);
+quad(door1X[0], door1Y[0], door1X[0], door1Y[1], 331, 156, 331, 466);
 
 fill(-6730496);
 pushMatrix();
