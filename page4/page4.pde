@@ -1,224 +1,160 @@
 size(1024, 600); 
 
-//Drawing the wall intersections
-int[] lineX = { width*344/1000, width*656/1000, width*202/1000, width*798/1000 };
-int[] lineY = { height*742/1000, height*0/1000, height };
+color brown = #994D00, grey = #808080, cream = #FFFFCC, darkGrey = #333333, black = #000000, oak = #CC8033, gold = #FFFF4D,
+doorColor = brown, deskColor = brown, standColor = grey, shadeColor = cream, couchbaseColor = darkGrey, couchbackColor = black, couchcushionColor = grey,
+doorpanelColor = oak, doorknobColor = gold;
 
-//Drawing the Bathroom Door
-int[] door1X = { width*223/1000, width};
-int[] door1Y = { height*967/1000, height*432/1000, };
+//Wall Intersection Variables
+int[] lineX = { width*344/1000, width*655/1000, width*202/1000, width*798/1000, width*655/1000, width*345/1000 };
+int[] lineY = { height*742/1000, height*0/1000, height, height*638/1000 };
 
+//Bathroom Door Variables
+int[] door1X = { width*223/1000, width*323/1000, };
+int[] door1Y = { height*967/1000, height*432/1000, height*260/1000, height*777/1000, };
+
+//Kitchen Door Variables
+int[] door2X = { width*787/1000, width*696/1000 };
+int[] door2Y = { height*983/1000, height*415/1000, height*276/1000, height*812/1000 };
+
+//Desk Variables
+int[] deskXY = { width*454/1000, height*655/1000 };
+int[] deskX = { width*10/1000, width*61/1000, width*70/1000, width*81/1000, 0-width*10/1000 };
+int[] deskY = { height*17/1000, 0-height*51/1000, 0-height*68/1000 };
+
+//Lamp Stand Variables
+int[] lStandXY = { deskXY[0], height*572/1000 };
+int[] lStandX = { deskX[2], width*40/1000, width*30/1000 };
+int[] lStandY = { height*17/1000, 0-height*103/1000, };
+
+//Lampshade Variables
+int[] lShadeX = { width*455/1000, width*525/1000, width*505/1000, width*475/1000,  };
+int[] lShadeY = { height*535/1000, height*448/1000, };
+
+//Couch Base Variables
+int[] couchBaseXY = { width*414/1000, height*603/1000 };
+int[] couchBaseX = { 0-width*10/1000, 0-width*70/1000, width*0/1000, width*0/1000,  };
+int[] couchBaseY = { 0-height*17/1000, height*68/1000, height*51/1000, height*0/1000, };
+
+//Couch Backboard Variables
+int[] couchBackboardX = { width*404/1000, width*344/1000 };
+int[] couchBackboardY = { height*517/1000, height*638/1000 };
+
+//Couch Cushion Variables
+int[] couchCushionX = { couchBackboardX[0], lineX[0] };
+int[] couchCushionY = { height*603/1000, couchBackboardY[1] };
+
+//Couch Armrest Variables
+int[] couchArmestXYWH = { couchBaseXY[0], height*586/1000, width*39/1000, height*66/1000 };
+
+//Bathroom Door Panel Variables
+int[] door1PanelX = { width*262/1000, width*314/1000, width*232/1000, width*283/1000 };
+int[] door1PanelY = { height*397/1000, height*673/1000, height*587/1000, height*312/1000,
+height*448/1000, height*725/1000, height*638/1000, height*363/1000, height*913/1000, height*827/1000, height*552/1000, 
+height*862/1000, height*775/1000, height*500/1000};
+int[] door1knobXYWH = { door1PanelX[1], height*560/1000, width*20/1000, height*43/1000 };
+
+//Kitchen Door Panel Variables
+int[] door2PanelX = { width*707/1000, width*747/1000, width*737/1000, width*777/1000 };
+int[] door2PanelY = { height*328/1000, height*622/1000, height*397/1000, height*690/1000, 
+height*380/1000, height*675/1000, height*448/1000, height*740/1000, 
+height*568/1000, height*861/1000, height*636/1000, height*930/1000, 
+height*517/1000, height*810/1000, height*585/1000, height*878/1000};
+int[] door2knobXYWH = { door2PanelX[0], height*586/1000, door1knobXYWH[2], door1knobXYWH[3] };
+
+//Drawing the Wall Intersections
 strokeWeight(1);
 line(lineX[0], lineY[0], lineX[2], lineY[2]);
 line(lineX[0], lineY[1], lineX[0], lineY[0]);
 line(lineX[1], lineY[0], lineX[3], lineY[2]);
 line(lineX[1], lineY[1], lineX[1], lineY[0]);
+line(lineX[4], lineY[3], lineX[5], lineY[3]);
 strokeWeight(0);
 
-fill(-6730496);
-quad(door1X[0], door1Y[0], door1X[0], door1Y[1], 331, 156, 331, 466);
+//Drawing the Bathroom Door
+fill(doorColor);
+quad(door1X[0], door1Y[0], door1X[0], door1Y[1], door1X[1], door1Y[2], door1X[1], door1Y[3]);
+fill(doorpanelColor);
+quad(door1PanelX[0], door1PanelY[0], door1PanelX[2], door1PanelY[4], door1PanelX[2], door1PanelY[6], door1PanelX[0], door1PanelY[2]);
+quad(door1PanelX[0], door1PanelY[1], door1PanelX[2], door1PanelY[5], door1PanelX[2], door1PanelY[8], door1PanelX[0], door1PanelY[11]);
+quad(door1PanelX[1], door1PanelY[2], door1PanelX[3], door1PanelY[6], door1PanelX[3], door1PanelY[9], door1PanelX[1], door1PanelY[12]);
+quad(door1PanelX[1], door1PanelY[3], door1PanelX[3], door1PanelY[7], door1PanelX[3], door1PanelY[10], door1PanelX[1], door1PanelY[13]);
+fill(doorknobColor);
+ellipse(door1knobXYWH[0], door1knobXYWH[1], door1knobXYWH[2], door1knobXYWH[3]);
 
-fill(-6730496);
+//Drawing the Kitchen Door
+fill(doorColor);
+quad(door2X[0], door2Y[0], door2X[0], door2Y[1], door2X[1], door2Y[2], door2X[1], door2Y[3]);
+fill(doorpanelColor);
+quad(door2PanelX[0], door2PanelY[0], door2PanelX[2], door2PanelY[4], door2PanelX[2], door2PanelY[8], door2PanelX[0], door2PanelY[12]);
+quad(door2PanelX[0], door2PanelY[1], door2PanelX[2], door2PanelY[5], door2PanelX[2], door2PanelY[9], door2PanelX[0], door2PanelY[13]);
+quad(door2PanelX[1], door2PanelY[2], door2PanelX[3], door2PanelY[6], door2PanelX[3], door2PanelY[10], door2PanelX[1], door2PanelY[14]);
+quad(door2PanelX[1], door2PanelY[3], door2PanelX[3], door2PanelY[7], door2PanelX[3], door2PanelY[11], door2PanelX[1], door2PanelY[15]);
+fill(doorknobColor);
+ellipse(door2knobXYWH[0], door2knobXYWH[1], door2knobXYWH[2], door2knobXYWH[3]);
+
+//Drawing the Desk
+fill(deskColor);
 pushMatrix();
-translate(827, 559);
-beginShape();
-vertex(-21, 31);
-vertex(-21, -310);
-vertex(-114, -393);
-vertex(-114, -72);
-endShape(CLOSE);
-popMatrix();
-
-strokeWeight(1);
-line(672, 383, 352, 383);
-strokeWeight(0);
-
-fill(-6730496);
-pushMatrix();
-translate(465, 393);
-beginShape();
-vertex(0, 0);
-vertex(0, 10);
-vertex(10, 10);
-vertex(10, 0);
-vertex(62, 0);
-vertex(62, 10);
-vertex(72, 10);
-vertex(72, 0);
-vertex(72, -31);
-vertex(83, -31);
-vertex(83, -41);
-vertex(-10, -41);
-vertex(-10, -31);
-vertex(0, -31);
-endShape(CLOSE);
-popMatrix();
-
-fill(-8355712);
-pushMatrix();
-translate(465, 341);
+translate(deskXY[0], deskXY[1]);
 beginShape();
 vertex(0, 0);
-vertex(0, 10);
-vertex(72, 10);
-vertex(72, 0);
-vertex(41, 0);
-vertex(41, -62);
-vertex(31, -62);
-vertex(31, 0);
+vertex(0, deskY[0]);
+vertex(deskX[0], deskY[0]);
+vertex(deskX[0], 0);
+vertex(deskX[1], 0);
+vertex(deskX[1], deskY[0]);
+vertex(deskX[2], deskY[0]);
+vertex(deskX[2], 0);
+vertex(deskX[2], deskY[1]);
+vertex(deskX[3], deskY[1]);
+vertex(deskX[3], deskY[2]);
+vertex(deskX[4], deskY[2]);
+vertex(deskX[4], deskY[1]);
+vertex(0, deskY[1]);
 endShape(CLOSE);
 popMatrix();
 
-fill(-52);
+//Drawing the Lamp Stand
+fill(standColor);
 pushMatrix();
-translate(476, 321);
-beginShape();
-vertex(-10, 0);
-vertex(62, 0);
-vertex(41, -52);
-vertex(10, -52);
-endShape(CLOSE);
-popMatrix();
-
-fill(-13421773);
-pushMatrix();
-translate(424, 362);
-beginShape();
-vertex(0, -10);
-vertex(0, 41);
-vertex(-10, 41);
-vertex(-10, 31);
-vertex(-72, 31);
-vertex(-72, -10);
-endShape(CLOSE);
-popMatrix();
-
-fill(-16777216);
-pushMatrix();
-translate(414, 331);
-beginShape();
-vertex(0, -21);
-vertex(-62, -21);
-vertex(-62, 52);
-vertex(0, 52);
-endShape(CLOSE);
-popMatrix();
-
-fill(-10066330);;
-pushMatrix();
-translate(414, 362);
+translate(lStandXY[0], lStandXY[1]);
 beginShape();
 vertex(0, 0);
-vertex(-62, 0);
-vertex(-62, 21);
-vertex(0, 21);
+vertex(0, lStandY[0]);
+vertex(lStandX[0], lStandY[0]);
+vertex(lStandX[0], 0);
+vertex(lStandX[1], 0);
+vertex(lStandX[1], lStandY[1]);
+vertex(lStandX[2], lStandY[1]);
+vertex(lStandX[2], 0);
 endShape(CLOSE);
 popMatrix();
 
-fill(-13421773);
-pushMatrix();
-translate(424, 352);
-rotate(0);
-ellipse(0, 0, 40, 40);
-popMatrix();
+//Drawing the Lampshade
+fill(shadeColor);
+quad(lShadeX[0], lShadeY[0], lShadeX[1], lShadeY[0], lShadeX[2], lShadeY[1], lShadeX[3], lShadeY[1]);
 
-fill(-3375053);
+//Drawing the Couch Base
+fill(couchbaseColor);
 pushMatrix();
-translate(269, 248);
+translate(couchBaseXY[0], couchBaseXY[1]);
 beginShape();
-vertex(0, -10);
-vertex(-31, 21);
-vertex(-31, 134);
-vertex(0, 103);
+vertex(0, couchBaseY[0]);
+vertex(0, couchBaseY[1]);
+vertex(couchBaseX[0], couchBaseY[1]);
+vertex(couchBaseX[0], couchBaseY[2]);
+vertex(couchBaseX[1], couchBaseY[2]);
+vertex(couchBaseX[1], couchBaseY[0]);
 endShape(CLOSE);
 popMatrix();
 
-fill(-3375053);
-pushMatrix();
-translate(269, 414);
-rotate(0);
-beginShape();
-vertex(0, -10);
-vertex(-31, 21);
-vertex(-31, 134);
-vertex(0, 103);
-endShape(CLOSE);
-popMatrix();
+//Drawing the back of the couch
+fill(couchbackColor);
+quad(couchBackboardX[0], couchBackboardY[0], couchBackboardX[1], couchBackboardY[0], couchBackboardX[1], couchBackboardY[1], couchBackboardX[0], couchBackboardY[1]);
 
-fill(-3375053);
-pushMatrix();
-translate(321, 362);
-beginShape();
-vertex(0, -10);
-vertex(-31, 21);
-vertex(-31, 134);
-vertex(0, 103);
-endShape(CLOSE);
-popMatrix();
+//Drawing the couch cushion
+fill(couchcushionColor);
+quad(couchCushionX[0], couchCushionY[0], couchCushionX[1], couchCushionY[0], couchCushionX[1], couchCushionY[1], couchCushionX[0], couchCushionY[1]);
 
-fill(-3375053);
-pushMatrix();
-translate(321, 197);
-beginShape();
-vertex(0, -10);
-vertex(-31, 21);
-vertex(-31, 134);
-vertex(0, 103);
-endShape(CLOSE);
-popMatrix();
-
-fill(-3375053);
-pushMatrix();
-translate(724, 207);
-beginShape();
-vertex(0, -10);
-vertex(31, 21);
-vertex(31, 134);
-vertex(0, 103);
-endShape(CLOSE);
-popMatrix();
-
-fill(-3375053);
-pushMatrix();
-translate(765, 248);
-beginShape();
-vertex(0, -10);
-vertex(31, 21);
-vertex(31, 134);
-vertex(0, 103);
-endShape(CLOSE);
-popMatrix();
-
-fill(-3375053);
-pushMatrix();
-translate(765, 424);
-beginShape();
-vertex(0, -10);
-vertex(31, 21);
-vertex(31, 134);
-vertex(0, 103);
-endShape(CLOSE);
-popMatrix();
-
-fill(-3375053);
-pushMatrix();
-translate(724, 383);
-beginShape();
-vertex(0, -10);
-vertex(31, 21);
-vertex(31, 134);
-vertex(0, 103);
-endShape(CLOSE);
-popMatrix();
-
-fill(-179);
-pushMatrix();
-translate(321, 341);
-ellipse(0, 0 ,20, 26);
-popMatrix();
-
-fill(-179);
-pushMatrix();
-translate(724, 352);
-ellipse(0, 0, 19, 26);
-popMatrix();
+fill(couchbaseColor);
+ellipse(couchArmestXYWH[0], couchArmestXYWH[1], couchArmestXYWH[2], couchArmestXYWH[3]);
