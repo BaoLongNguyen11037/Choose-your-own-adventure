@@ -117,6 +117,7 @@ int blanketSideX2 = footX3, blanketSideY2 = footY3+height*1/30;
 int blanketSideX3 = blanketTopX4, blanketSideY3 = blanketTopY4;
 int blanketSideX4 = blanketTopX4, blanketSideY4 = height*860/1000;
 
+void drawClock() {
 //Clock Variables (frame)
 int clockx = width*300/1000;
 int clocky = height*450/1000;
@@ -134,6 +135,8 @@ int minuteX2 = width*300/1000, minuteY2 = height*406/1000;
 //Clock Hand Variables (Seconds)
 int secondX1 = clockx, secondY1 = clocky;
 int secondX2 = width*282/1000, secondY2 = height*445/1000;
+
+}
 
 //Desk Variables (Top)
 int desktopX1 = width*750/1000, desktopY1 = height*759/1000;
