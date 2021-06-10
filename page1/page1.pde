@@ -32,6 +32,19 @@ blanketColor = darkBlue, pcColor = black, displayColor = gray;
 //int coord2X2 = desktopX3, coord2Y2 = leg1Y4;
 
 void draw() {
+  int[] highlightBoxX = { width*270/1000, width*330/1000 };
+  int[] highlightBoxY = { height*398/1000, height*504/1000 };
+  if (mouseX < highlightBoxX[1] && mouseX > highlightBoxX[0] && mouseY > highlightBoxY[0] && mouseY < highlightBoxY[1]) {
+    withinClock = true;
+    noFill(); //Drawing the highlight box
+    quad(highlightBoxX[0], highlightBoxY[0], highlightBoxX[1], highlightBoxY[0], highlightBoxX[1], highlightBoxY[1], highlightBoxX[0], highlightBoxY[1]);
+  }
+  else {
+    withinClock = false; //If the mouse isn't within or leaves any hitboxes...
+    if (interactedClock == false) { //And you're not interacting with the clock
+      background(#CCCCCC);
+    }
+  }
   roomLines();
   doorDraw();
   drawWindow();
@@ -39,6 +52,21 @@ void draw() {
   drawClock();
   drawDesk();
   drawComputer();
+  test();
+}
+
+void mouseClicked() {
+  if (withinClock == true) { //If the mouse is within the clock hitbox...
+    if (mouseButton == LEFT) { //...and the left mouse button is clicked...
+      interactedClock = true;
+      
+    }
+  }
+  else { //If the mouse is within any hitboxes but hasn't clicked....
+    interactedClock = false;
+    
+  }
+  
 }
 
 //Functions for objects in the room
