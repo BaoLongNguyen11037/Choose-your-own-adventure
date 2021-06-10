@@ -1,3 +1,14 @@
+void drawWwindowPage() {
+  drawSky();
+  drawClouds();
+  drawBuildings();
+  drawTerrain();
+  drawFrame();
+  drawCT();
+  drawSun();
+  
+}
+
 void drawSky() {
   //Sky Variables
   int skyboxX1 = width*300/1000, skyboxY1 = height*170/1000, skyboxX2 = skyboxX1, skyboxY2 = height*853/1000;
@@ -121,6 +132,7 @@ void drawBuildings() {
 }
 
 void drawCT() {
+  int[] ground1Y = { height*768/1000, height*853/1000 };
   //Clock Tower Variables
   int[] clcktWallX1 = { width*424/1000, width*450/1000 };
   int[] clcktWallY1 = { height*640/1000, ground1Y[0] };
