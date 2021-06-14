@@ -1,8 +1,31 @@
+//This page needs an unconventional exit (to the bedroom)
+boolean withinExit1 = false;
+
+boolean interactedExit1 = false;
+
 void drawRoom4() {
+  int[] highlightBox1X = { width*400/1000, width*600/1000 };
+  int[] highlightBox1Y = { height*700/1000, height };
   drawLines();
   drawDoors();
   drawTable();
   drawCouch();
+  if (mouseX > highlightBox1X[0] && mouseX < highlightBox1X[1] && mouseY > highlightBox1Y[0] && mouseY < highlightBox1Y[1]) {
+    withinExit1 = true;
+    if (paused == false) {
+      cursor(HAND);
+      noFill();
+      quad(highlightBox1X[0], highlightBox1Y[0], highlightBox1X[1], highlightBox1Y[0], highlightBox1X[1], highlightBox1Y[1], highlightBox1X[0], highlightBox1Y[1]);
+      c = "Go to the bedroom.";
+      drawText();
+    }
+  }
+  else {
+    if (paused == false) {
+      withinExit1 = false;
+    }
+    cursor(ARROW);
+  }
 }
 
 void drawLines() {

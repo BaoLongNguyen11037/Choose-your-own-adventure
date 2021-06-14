@@ -4,11 +4,7 @@ boolean withinClock = false;
 boolean withinComputer = false;
 boolean withinWindow = false;
 
-boolean interactedDoor = false;
-boolean interactedBed = false;
-boolean interactedClock = false;
-boolean interactedComputer = false;
-boolean interactedWindow = false;
+String c = "";
 //Declare the size of the window
 //fullScreen();
 //strokeWeight(0);
@@ -21,19 +17,21 @@ boolean interactedWindow = false;
 //int coord2X1 = desktopX2, coord2Y1 = height*950/1000;
 //int coord2X2 = desktopX3, coord2Y2 = leg1Y4;
 void drawRoom1() {
-  int[] highlightBoxX = { width*270/1000, width*330/1000 };
-  int[] highlightBoxY = { height*398/1000, height*504/1000 };
-  if (mouseX < highlightBoxX[1] && mouseX > highlightBoxX[0] && mouseY > highlightBoxY[0] && mouseY < highlightBoxY[1]) {
-    withinClock = true;
-    noFill(); //Drawing the highlight box
-    quad(highlightBoxX[0], highlightBoxY[0], highlightBoxX[1], highlightBoxY[0], highlightBoxX[1], highlightBoxY[1], highlightBoxX[0], highlightBoxY[1]);
-  }
-  else {
-    withinClock = false; //If the mouse isn't within or leaves any hitboxes...
-    if (interactedClock == false) { //And you're not interacting with the clock
-      background(#CCCCCC);
-    }
-  }
+  int[] highlightBox1X = { width*270/1000, width*330/1000 };
+  int[] highlightBox1Y = { height*398/1000, height*504/1000 };
+  
+  int[] highlightBox2X = { width*45/1000, width*167/1000 };
+  int[] highlightBox2Y = { height*465/1000, height*982/1000 };
+  
+  int[] highlightBox3X = { width*250/1000, width*650/1000 };
+  int[] highlightBox3Y = { height*630/1000, height*969/1000 };
+  
+  int[] highlightBox4X = { width*610/1000, width*700/1000 };
+  int[] highlightBox4Y = { height*368/1000, height*580/1000 };
+  
+  int[] highlightBox5X = { width*670/1000, width*879/1000 };
+  int[] highlightBox5Y = { height*657/1000, height*846/1000 };
+  
   roomLines();
   doorDraw();
   drawWindow();
@@ -41,21 +39,99 @@ void drawRoom1() {
   drawClock();
   drawDesk();
   drawComputer();
-}
-
-void mouseClicked() {
-  if (withinClock == true) { //If the mouse is within the clock hitbox...
-    if (mouseButton == LEFT) { //...and the left mouse button is clicked...
-      interactedClock = true;
-      
+  //Clock Hitbox
+  if (mouseX < highlightBox1X[1] && mouseX > highlightBox1X[0] && mouseY > highlightBox1Y[0] && mouseY < highlightBox1Y[1]) {
+    withinClock = true;
+    if (paused == false) { //Makes sure you're not currently interacting with the clock
+      cursor(HAND);
+      noFill(); //Drawing the highlight box
+      quad(highlightBox1X[0], highlightBox1Y[0], highlightBox1X[1], highlightBox1Y[0], highlightBox1X[1], highlightBox1Y[1], highlightBox1X[0], highlightBox1Y[1]);
+      c = "Check the time.";
+      drawText();
     }
   }
-  else { //If the mouse is within any hitboxes but hasn't clicked....
-    interactedClock = false;
-    
+  //Door Hitbox
+  else if (mouseX < highlightBox2X[1] && mouseX > highlightBox2X[0] && mouseY > highlightBox2Y[0] && mouseY < highlightBox2Y[1]) {
+    withinDoor = true;
+    if (paused == false) {
+    cursor(HAND);
+    noFill();
+    quad(highlightBox2X[0], highlightBox2Y[0], highlightBox2X[0], highlightBox2Y[1], highlightBox2X[1], highlightBox2Y[1], highlightBox2X[1], highlightBox2Y[0]);
+      c = "Leave the Bedroom.";
+      drawText();
+    }
   }
-  
+  //Drawing the bed hitbox
+  else if (mouseX > highlightBox3X[0] && mouseX < highlightBox3X[1] && mouseY > highlightBox3Y[0] && mouseY < highlightBox3Y[1]) {
+    withinBed = true;
+    if (paused == false) {
+      cursor(HAND);
+      noFill();
+      quad(highlightBox3X[0], highlightBox3Y[0], highlightBox3X[0], highlightBox3Y[1], highlightBox3X[1], highlightBox3Y[1], highlightBox3X[1], highlightBox3Y[0]);
+      c = "You don't feel tired right now.";
+      drawText();
+    }
+  }
+  //Drawing the window hitbox
+  else if (mouseX > highlightBox4X[0] && mouseX < highlightBox4X[1] && mouseY > highlightBox4Y[0] && mouseY < highlightBox4Y[1]) {
+    withinWindow = true;
+    noFill();
+    quad(highlightBox4X[0], highlightBox4Y[0], highlightBox4X[0], highlightBox4Y[1], highlightBox4X[1], highlightBox4Y[1], highlightBox4X[1], highlightBox4Y[0]);
+    c = "Peer out the window.";
+    drawText();
+  }
+  //Drawing the laptop hitbox
+  else if (mouseX > highlightBox5X[0] && mouseX < highlightBox5X[1] && mouseY > highlightBox5Y[0] && mouseY < highlightBox5Y[1]) {
+    withinWindow = true;
+    noFill();
+    quad(highlightBox5X[0], highlightBox5Y[0], highlightBox5X[0], highlightBox5Y[1], highlightBox5X[1], highlightBox5Y[1], highlightBox5X[1], highlightBox5Y[0]);
+    c = "Use the laptop.";
+    drawText();
+  }
+  else {
+    if (paused == false) { //If the game isn't currently paused...
+      withinClock = false; //If the mouse isn't within or leaves any hitboxes...
+      withinDoor = false;
+      withinBed = false;
+      withinWindow = false;
+      withinComputer = false;
+    }
+    cursor(ARROW);
+  }
 }
+
+void drawClockText() {
+  if (hour > 11) {
+    AM = false;
+  }
+  if (AM == true) {
+    AMPM = "AM";
+  }
+  else if (AM == false) {
+    AMPM = "PM";
+  }
+  c = "The time is " + hour + ":" + minute + ":" + second + AMPM + ".";
+  drawText();
+  fill(grey);
+  rect(0, 500, 1024, 100);
+  fill(defaultColor);
+  textSize(32);
+  text(c, 50, 550);
+}
+
+//void mouseClicked() {
+  //if (withinClock == true) { //If the mouse is within the clock hitbox...
+    //if (mouseButton == LEFT) { //...and the left mouse button is clicked...
+      //interactedClock = true;
+      
+    //}
+  //}
+ // else { //If the mouse is within any hitboxes but hasn't clicked....
+    //interactedClock = false;
+    
+  //}
+  
+//}
 
 //Functions for objects in the room
 void roomLines() {
@@ -365,6 +441,13 @@ void drawComputer() {
   quad(displayX1, displayY1, displayX2, displayY2, displayX3, displayY3, displayX4, displayY4);
 }
 
+void drawText() {
+  fill(grey);
+  rect(0, 500, 1024, 100);
+  fill(defaultColor);
+  textSize(32);
+  text(c, 50, 550);
+}
 
 //Slope Calculator (y2-y1)/(x2-x1) 
 //roomLine slope is 0.234375

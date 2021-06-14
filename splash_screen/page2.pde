@@ -1,4 +1,6 @@
-void drawRoom2() {
+//This page needs an unconventional exit (to the bedroom)
+
+void drawPage2() {
   drawDeskpg2();
   drawLaptoppg2();
   

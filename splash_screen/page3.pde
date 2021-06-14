@@ -1,4 +1,6 @@
-void drawWwindowPage() {
+//This page needs an unconventional exit (to the bedroom)
+
+void drawPage3() {
   drawSky();
   drawClouds();
   drawBuildings();

@@ -12,12 +12,27 @@ doorpanelColor = oak, doorknobColor = gold;
 int textY = 0;
 float textMoveY = 1.5;
 float alphaVar = 0;
+float alphaVar2 = 0;
+int gameState = 0;
+float timer = 60;
+boolean misclicked = false;
+boolean paused = false;
+boolean interactedClock = false;
+
+boolean AM = true;
+String AMPM = "";
+
+int hour = hour();
+int minute = minute();
+int second = second();
+
 void setup() {
   size(1024, 600);
   frameRate(120);
 }
 
 void draw() {
+ if (gameState == 0) {
   if (textY < height*450/1000) {
     fill(255);
     background(#CCCCCC);
@@ -32,8 +47,104 @@ void draw() {
     textSize(30);
     String press = "Left click to begin.";
     text(press, width*360/1000, height*550/1000);
+    if (alphaVar >= 255) {
+      alphaVar = 255;
+    }
   }
+  else if (misclicked == true) {
+    alphaVar2 += 1;
+ }
   else {
     textMoveY = 0;
   }
+ }
+  if (gameState == 1) {
+    //System.out.print(gameState); //Debugging: Game State
+    //System.out.print(interactedDoor); //Debugging: State of the exits
+    if (paused == false) {
+      withinDoor = false; //Clearing variables to ensure proper transfer between scenes
+      withinExit1 = false;
+      background(#CCCCCC); //Ensures that the previous room is cleared before drawing the next
+      drawRoom1();
+    }
+  }
+  if (gameState == 2) {
+    //System.out.print(gameState);
+    if (paused == false) {
+      background(#CCCCCC);
+      drawPage2();
+    }
+  }
+  if (gameState == 3) {
+    //System.out.print(gameState);
+    if (paused == false) {
+      background(#CCCCCC);
+      drawPage3();
+    }
+  }
+  if (gameState == 4) {
+    //System.out.print(gameState);
+    //System.out.print(interactedDoor); //Debugging: State of the exits
+    if (paused == false) {
+      withinDoor = false;
+      withinExit1 = false;
+      background(#CCCCCC);
+      drawRoom4();
+    }
+  }
+  hour = hour();
+  minute = minute();
+  second = second();
+}
+
+void mouseClicked() {
+  if (gameState == 0) {
+    if (mouseButton == LEFT) {
+        gameState = 1;
+    }
+  }
+  if (mouseButton == RIGHT) {
+    textSize(30);
+    String press2 = "Not the right mouse button.";
+    text(press2, width*360/1000, height*600/1000);
+    
+  }
+  if (withinClock == true) { //If the cursor is within the hitbox...
+    if (mouseButton == LEFT) { //...and only the Left Mouse Button is pressed
+      interactedClock = true;
+      paused = true;
+      if (paused == true) {
+        drawClockText();
+      }
+    }
+  }
+  if (withinDoor == true) {
+    if (mouseButton == LEFT) {
+      gameState = 4;
+      //paused = true;
+      cursor(ARROW);
+      System.out.print("Leaving gameState ");
+      System.out.println(gameState);
+      System.out.print(withinDoor);
+      System.out.print(withinExit1);
+    }
+  }
+  if (withinExit1 == true) {
+    if (mouseButton == LEFT) {
+      gameState = 1;
+      //paused = true;
+      cursor(ARROW);
+      System.out.println("Leaving gameState ");
+      System.out.println(gameState);
+      System.out.print(withinDoor);
+      System.out.print(withinExit1);
+    }
+  }
+  else {
+    
+  }
+}
+
+void mousePressed() {
+  paused = false;
 }
