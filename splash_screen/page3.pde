@@ -1,14 +1,65 @@
-//This page needs an unconventional exit (to the bedroom)
+boolean withinExit3 = false;
+boolean withinHouses = false;
+
+boolean interactedHouses = false;
 
 void drawPage3() {
+  //Highlight Box for the Exits
+  int[] highlightBox1X = { width*0/1000, width*200/1000 };
+  int[] highlightBox1Y = { height*0/1000, height };
+  
+  int[] highlightBox2X = { width*800/1000, width };
+  int[] highlightBox2Y = { height*0/1000, height };
+  
+  //Highlight Box for the Houses
+  int[] highlightBox3X = { width*462/1000, width*638/1000 };
+  int[] highlightBox3Y = { height*0/1000, height*0/1000 };
+  
   drawSky();
   drawClouds();
-  drawBuildings();
   drawTerrain();
-  drawFrame();
-  drawCT();
   drawSun();
+  drawBuildings();
+  drawCT();
+  drawFrame();
   
+  if (mouseX < highlightBox1X[1] && mouseX > highlightBox1X[0] && mouseY > highlightBox1Y[0] && mouseY < highlightBox1Y[1]) {
+    withinExit3 = true;
+    if (paused == false) { //Makes sure you're not currently interacting with the clock
+      cursor(HAND);
+      noFill(); //Drawing the highlight box
+      quad(highlightBox1X[0], highlightBox1Y[0], highlightBox1X[1], highlightBox1Y[0], highlightBox1X[1], highlightBox1Y[1], highlightBox1X[0], highlightBox1Y[1]);
+      c = "Return to the bedroom.";
+      drawText();
+    }
+  }
+  else if (mouseX < highlightBox2X[1] && mouseX > highlightBox2X[0] && mouseY > highlightBox2Y[0] && mouseY < highlightBox2Y[1]) {
+    withinExit3 = true;
+    if (paused == false) { //Makes sure you're not currently interacting with the clock
+      cursor(HAND);
+      noFill(); //Drawing the highlight box
+      quad(highlightBox2X[0], highlightBox2Y[0], highlightBox2X[1], highlightBox2Y[0], highlightBox2X[1], highlightBox2Y[1], highlightBox2X[0], highlightBox2Y[1]);
+      c = "Return to the bedroom.";
+      drawText();
+    }
+  }
+  else if (mouseX < highlightBox3X[1] && mouseX > highlightBox3X[0] && mouseY > highlightBox3Y[0] && mouseY < highlightBox3Y[1]) {
+    withinHouses = true;
+    if (paused == false) { //Makes sure you're not currently interacting with the clock
+      cursor(HAND);
+      noFill(); //Drawing the highlight box
+      quad(highlightBox2X[0], highlightBox2Y[0], highlightBox2X[1], highlightBox2Y[0], highlightBox2X[1], highlightBox2Y[1], highlightBox2X[0], highlightBox2Y[1]);
+      c = "Look at the houses.";
+      drawText();
+    }
+  }
+  else {
+    if (paused == false) {
+      withinExit3 = false;
+      withinHouses = false;
+    }
+    cursor(ARROW);
+  }
 }
 
 void drawSky() {

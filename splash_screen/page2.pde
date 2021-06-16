@@ -1,8 +1,78 @@
-//This page needs an unconventional exit (to the bedroom)
+boolean withinExit2 = false;
+boolean withinComputer2 = false;
+
+boolean interactedComputer = false;
 
 void drawPage2() {
+  //Highlight Box for the Exits
+  int[] highlightBox1X = { width*0/1000, width*100/1000 };
+  int[] highlightBox1Y = { height*0/1000, height };
+  
+  int[] highlightBox2X = { width*179/1000, width*820/1000 };
+  int[] highlightBox2Y = { height*197/1000, height*987/1000 };
+  
+  int[] highlightBox3X = { width*900/1000, width };
+  int[] highlightBox3Y = { height*0/1000, height };
+  
+  //Highlight Box for the Computer
+  int[] highlightBox4X = { width*0/1000, width };
+  int[] highlightBox4Y = { height*0/1000, height*100/1000 };
+  
+  //Draw the desk and the computer
   drawDeskpg2();
   drawLaptoppg2();
+  
+  //Return via the left
+  if (mouseX < highlightBox1X[1] && mouseX > highlightBox1X[0] && mouseY > highlightBox1Y[0] && mouseY < highlightBox1Y[1]) {
+    withinExit2 = true;
+    if (paused == false) { //Makes sure you're not currently interacting with the clock
+      cursor(HAND);
+      noFill(); //Drawing the highlight box
+      quad(highlightBox1X[0], highlightBox1Y[0], highlightBox1X[1], highlightBox1Y[0], highlightBox1X[1], highlightBox1Y[1], highlightBox1X[0], highlightBox1Y[1]);
+      c = "Return to the bedroom.";
+      drawText();
+    }
+  }
+  //Return via the right
+  else if (mouseX < highlightBox3X[1] && mouseX > highlightBox3X[0] && mouseY > highlightBox3Y[0] && mouseY < highlightBox3Y[1]) {
+    withinExit2 = true;
+    if (paused == false) { //Makes sure you're not currently interacting with the clock
+      cursor(HAND);
+      noFill(); //Drawing the highlight box
+      quad(highlightBox3X[0], highlightBox3Y[0], highlightBox3X[1], highlightBox3Y[0], highlightBox3X[1], highlightBox3Y[1], highlightBox3X[0], highlightBox3Y[1]);
+      c = "Return to the bedroom.";
+      drawText();
+    }
+  }
+  //Return via the top
+  else if (mouseX < highlightBox4X[1] && mouseX > highlightBox4X[0] && mouseY > highlightBox4Y[0] && mouseY < highlightBox4Y[1]) {
+    withinExit2 = true;
+    if (paused == false) { //Makes sure you're not currently interacting with the clock
+      cursor(HAND);
+      noFill(); //Drawing the highlight box
+      quad(highlightBox4X[0], highlightBox4Y[0], highlightBox4X[1], highlightBox4Y[0], highlightBox4X[1], highlightBox4Y[1], highlightBox4X[0], highlightBox4Y[1]);
+      c = "Return to the bedroom.";
+      drawText();
+    }
+  }
+  //Use the Laptop
+  else if (mouseX < highlightBox2X[1] && mouseX > highlightBox2X[0] && mouseY > highlightBox2Y[0] && mouseY < highlightBox2Y[1]) {
+    withinComputer2 = true;
+    if (paused == false) { //Makes sure you're not currently interacting with the clock
+      cursor(HAND);
+      noFill(); //Drawing the highlight box
+      quad(highlightBox2X[0], highlightBox2Y[0], highlightBox2X[1], highlightBox2Y[0], highlightBox2X[1], highlightBox2Y[1], highlightBox2X[0], highlightBox2Y[1]);
+      c = "Use the laptop.";
+      drawText();
+    }
+  }
+  else {
+    if (paused == false) {
+      withinExit2 = false;
+      withinComputer2 = false;
+    }
+    cursor(ARROW);
+  }
   
 }
 

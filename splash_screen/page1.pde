@@ -39,6 +39,7 @@ void drawRoom1() {
   drawClock();
   drawDesk();
   drawComputer();
+  
   //Clock Hitbox
   if (mouseX < highlightBox1X[1] && mouseX > highlightBox1X[0] && mouseY > highlightBox1Y[0] && mouseY < highlightBox1Y[1]) {
     withinClock = true;
@@ -75,6 +76,7 @@ void drawRoom1() {
   //Drawing the window hitbox
   else if (mouseX > highlightBox4X[0] && mouseX < highlightBox4X[1] && mouseY > highlightBox4Y[0] && mouseY < highlightBox4Y[1]) {
     withinWindow = true;
+    cursor(HAND);
     noFill();
     quad(highlightBox4X[0], highlightBox4Y[0], highlightBox4X[0], highlightBox4Y[1], highlightBox4X[1], highlightBox4Y[1], highlightBox4X[1], highlightBox4Y[0]);
     c = "Peer out the window.";
@@ -82,7 +84,8 @@ void drawRoom1() {
   }
   //Drawing the laptop hitbox
   else if (mouseX > highlightBox5X[0] && mouseX < highlightBox5X[1] && mouseY > highlightBox5Y[0] && mouseY < highlightBox5Y[1]) {
-    withinWindow = true;
+    withinComputer = true;
+    cursor(HAND);
     noFill();
     quad(highlightBox5X[0], highlightBox5Y[0], highlightBox5X[0], highlightBox5Y[1], highlightBox5X[1], highlightBox5Y[1], highlightBox5X[1], highlightBox5Y[0]);
     c = "Use the laptop.";
@@ -111,7 +114,6 @@ void drawClockText() {
     AMPM = "PM";
   }
   c = "The time is " + hour + ":" + minute + ":" + second + AMPM + ".";
-  drawText();
   fill(grey);
   rect(0, 500, 1024, 100);
   fill(defaultColor);
@@ -443,7 +445,7 @@ void drawComputer() {
 
 void drawText() {
   fill(grey);
-  rect(0, 500, 1024, 100);
+  rect(width*0, height*833/1000, width, height*167/1000);
   fill(defaultColor);
   textSize(32);
   text(c, 50, 550);

@@ -1,11 +1,10 @@
-//This page needs an unconventional exit (to the bedroom)
 boolean withinExit1 = false;
 
 boolean interactedExit1 = false;
 
 void drawRoom4() {
   int[] highlightBox1X = { width*400/1000, width*600/1000 };
-  int[] highlightBox1Y = { height*700/1000, height };
+  int[] highlightBox1Y = { height*760/1000, height };
   drawLines();
   drawDoors();
   drawTable();
