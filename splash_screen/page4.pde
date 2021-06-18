@@ -1,10 +1,21 @@
 boolean withinExit1 = false;
-
-boolean interactedExit1 = false;
+boolean withinLivingroom = false;
+boolean withinKitchen = false;
+boolean withinBathroom = false;
 
 void drawRoom4() {
   int[] highlightBox1X = { width*400/1000, width*600/1000 };
   int[] highlightBox1Y = { height*760/1000, height };
+  
+  int[] highlightBox2X = { width*344/1000, width*655/1000 };
+  int[] highlightBox2Y = { height*0/1000, height*742/1000 };
+  
+  int[] highlightBox3X = { width*223/1000, width*323/1000 };
+  int[] highlightBox3Y = { height*260/1000, height*967/1000 };
+  
+  int[] highlightBox4X = { width*696/1000, width*787/1000 };
+  int[] highlightBox4Y = { height*276/1000, height*983/1000 };
+  
   drawLines();
   drawDoors();
   drawTable();
@@ -19,9 +30,42 @@ void drawRoom4() {
       drawText();
     }
   }
+  else if (mouseX > highlightBox2X[0] && mouseX < highlightBox2X[1] && mouseY > highlightBox2Y[0] && mouseY < highlightBox2Y[1]) {
+    withinLivingroom = true;
+    if (paused == false) {
+      cursor(HAND);
+      noFill();
+      quad(highlightBox2X[0], highlightBox2Y[0], highlightBox2X[1], highlightBox2Y[0], highlightBox2X[1], highlightBox2Y[1], highlightBox2X[0], highlightBox2Y[1]);
+      c = "Go to the living room.";
+      drawText();
+    }
+  }
+  else if (mouseX > highlightBox3X[0] && mouseX < highlightBox3X[1] && mouseY > highlightBox3Y[0] && mouseY < highlightBox3Y[1]) {
+    withinBathroom = true;
+    if (paused == false) {
+      cursor(HAND);
+      noFill();
+      quad(highlightBox3X[0], highlightBox3Y[0], highlightBox3X[1], highlightBox3Y[0], highlightBox3X[1], highlightBox3Y[1], highlightBox3X[0], highlightBox3Y[1]);
+      c = "Go to the bathroom.";
+      drawText();
+    }
+  }
+  else if (mouseX > highlightBox4X[0] && mouseX < highlightBox4X[1] && mouseY > highlightBox4Y[0] && mouseY < highlightBox4Y[1]) {
+    withinKitchen = true;
+    if (paused == false) {
+      cursor(HAND);
+      noFill();
+      quad(highlightBox4X[0], highlightBox4Y[0], highlightBox4X[1], highlightBox4Y[0], highlightBox4X[1], highlightBox4Y[1], highlightBox4X[0], highlightBox4Y[1]);
+      c = "Go to the kitchen.";
+      drawText();
+    }
+  }
   else {
     if (paused == false) {
       withinExit1 = false;
+      withinLivingroom = false;
+      withinKitchen = false;
+      withinBathroom = false;
     }
     cursor(ARROW);
   }
@@ -58,12 +102,9 @@ void drawDoors() {
   int[] door1knobXYWH = { door1PanelX[1], height*560/1000, width*20/1000, height*43/1000 };
 
   //Kitchen Door Panel Variables
-  int[] door2PanelX = { width*707/1000, width*747/1000, width*737/1000, width*777/1000 };
-  int[] door2PanelY = { height*328/1000, height*622/1000, height*397/1000, height*690/1000, 
-  height*380/1000, height*675/1000, height*448/1000, height*740/1000, 
-  height*568/1000, height*861/1000, height*636/1000, height*930/1000, 
-  height*517/1000, height*810/1000, height*585/1000, height*878/1000};
-  int[] door2knobXYWH = { door2PanelX[0], height*586/1000, door1knobXYWH[2], door1knobXYWH[3] };
+  int[] door2PanelX = { width*747/1000, width*777/1000 };
+  int[] door2PanelY = { height*370/1000, height*420/1000, height*940/1000, height*880/1000 };
+  int[] door2knobXYWH = { width*707/1000, height*586/1000, door1knobXYWH[2], door1knobXYWH[3] };
   
   //Drawing the Bathroom Door
   fill(doorColor);
@@ -79,11 +120,8 @@ void drawDoors() {
   //Drawing the Kitchen Door
   fill(doorColor);
   quad(door2X[0], door2Y[0], door2X[0], door2Y[1], door2X[1], door2Y[2], door2X[1], door2Y[3]);
-  fill(doorpanelColor);
-  quad(door2PanelX[0], door2PanelY[0], door2PanelX[2], door2PanelY[4], door2PanelX[2], door2PanelY[8], door2PanelX[0], door2PanelY[12]);
-  quad(door2PanelX[0], door2PanelY[1], door2PanelX[2], door2PanelY[5], door2PanelX[2], door2PanelY[9], door2PanelX[0], door2PanelY[13]);
-  quad(door2PanelX[1], door2PanelY[2], door2PanelX[3], door2PanelY[6], door2PanelX[3], door2PanelY[10], door2PanelX[1], door2PanelY[14]);
-  quad(door2PanelX[1], door2PanelY[3], door2PanelX[3], door2PanelY[7], door2PanelX[3], door2PanelY[11], door2PanelX[1], door2PanelY[15]);
+  fill(skyBlue);
+  quad(door2PanelX[0], door2PanelY[0], door2PanelX[1], door2PanelY[1], door2PanelX[1], door2PanelY[2], door2PanelX[0], door2PanelY[3]);
   fill(doorknobColor);
   ellipse(door2knobXYWH[0], door2knobXYWH[1], door2knobXYWH[2], door2knobXYWH[3]);
 

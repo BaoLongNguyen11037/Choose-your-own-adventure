@@ -106,6 +106,7 @@ void drawRoom1() {
 void drawClockText() {
   if (hour > 11) {
     AM = false;
+    hour -= 12; //Prevents the clock from displaying 24hr time
   }
   if (AM == true) {
     AMPM = "AM";
@@ -114,7 +115,7 @@ void drawClockText() {
     AMPM = "PM";
   }
   c = "The time is " + hour + ":" + minute + ":" + second + AMPM + ".";
-  fill(grey);
+  fill(lightGray2);
   rect(0, 500, 1024, 100);
   fill(defaultColor);
   textSize(32);
@@ -444,7 +445,7 @@ void drawComputer() {
 }
 
 void drawText() {
-  fill(grey);
+  fill(lightGray2);
   rect(width*0, height*833/1000, width, height*167/1000);
   fill(defaultColor);
   textSize(32);

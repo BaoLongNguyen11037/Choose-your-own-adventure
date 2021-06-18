@@ -1,19 +1,34 @@
 //Declare Colors
-//Color Variables
-color brown = #724730, blue = #08ECFF, white = #FFFFFF, oak = #BB8141, lightBrown = #9B5F42, gray = #989898, gold = #FFD00F, darkBlue = #000EFC, black = #000000,
-doorColor = brown, windowSky = blue, defaultColor = white, bedFrame = gray, mattressColor = white, deskColor = oak, panelColor = lightBrown, dkColor = gold,
-blanketColor = darkBlue, pcColor = black, displayColor = gray, lightGray = #a1a1a1, darkGray = #505050,
-laptopColor = black, screenColor = lightGray, keyboardColor = darkGray, touchpadColor = lightGray, 
-white2 = #FAFAFA, skyBlue = #6680E6, yellow = #FFFF4D, gray2 = #CCCCCC, oak2 = #CC9933, brown2 = #994D00, green = #336633, beige = #E6E6CC,
-frameColor = white, skyColor = skyBlue, cloudColor = white, sunColor = yellow, defaultColor2 = gray, towerColor = oak, grassColor = green, barnwallColor = brown,
-barnroofColor = darkGray, houseroofColor = black, housewallColor = beige, brown3 = #994D00, grey = #808080, cream = #FFFFCC, darkGrey = #333333, oak3 = #CC8033, gold2 = #FFFF4D, 
-doorColor3 = brown, deskColor3 = brown, standColor = grey, shadeColor = cream, couchbaseColor = darkGrey, couchbackColor = black, couchcushionColor = grey,
+
+//Shades
+color white = #FFFFFF, white2 = #FAFAFA, bgColor = #CCCCCC, lightGray = #a1a1a1, lightGray1 = #989898, lightGray2 = #808080, darkGray = #505050, darkGray1 = #333333, black = #000000,
+
+//Colours
+oak = #BB8141, oak1 = #CC8033, lightBrown = #9B5F42, brown = #724730, brown2 = #994D00, cream = #FFFFCC, yellow = #FFFF4D, gold = #FFD00F, gold1 = #FFFF4D, green = #336633, 
+skyBlue = #6680E6, blue = #08ECFF, darkBlue = #000EFC, beige = #E6E6CC,
+
+//Assigning Variables
+
+//Page 1
+defaultColor = white, doorColor = brown, windowSky = blue, bedFrame = lightGray1, mattressColor = white, deskColor = oak, panelColor = lightBrown, dkColor = gold,
+blanketColor = darkBlue, pcColor = black, displayColor = lightGray1,
+
+//Page 2
+laptopColor = black, screenColor = lightGray, keyboardColor = darkGray, touchpadColor = lightGray, //Page 2
+
+//Page 3
+frameColor = white, skyColor = skyBlue, cloudColor = white, sunColor = yellow, defaultColor2 = lightGray1, towerColor = oak1, grassColor = green, barnwallColor = brown,
+barnroofColor = darkGray, houseroofColor = black, housewallColor = beige,
+
+//Page 4
+deskColor3 = brown, standColor = lightGray2, shadeColor = cream, couchbaseColor = darkGray1, couchbackColor = black, couchcushionColor = lightGray2,
 doorpanelColor = oak, doorknobColor = gold;
+
 int textY = 0;
 float textMoveY = 1.5;
 float alphaVar = 0;
 float alphaVar2 = 0;
-int gameState = 0;
+int gameState = 5;
 float timer = 60;
 
 boolean misclicked = false;
@@ -103,6 +118,33 @@ void draw() {
       drawRoom4();
     }
   }
+  if (gameState == 5) {
+    //System.out.print(gameState);
+    //System.out.print(interactedDoor); //Debugging: State of the exits
+    if (paused == false) {
+      
+      background(#CCCCCC);
+      drawRoom5();
+    }
+  }
+  if (gameState == 6) {
+    //System.out.print(gameState);
+    //System.out.print(interactedDoor); //Debugging: State of the exits
+    if (paused == false) {
+      
+      background(#CCCCCC);
+      drawRoom6();
+    }
+  }
+  if (gameState == 7) {
+    //System.out.print(gameState);
+    //System.out.print(interactedDoor); //Debugging: State of the exits
+    if (paused == false) {
+      
+      background(#CCCCCC);
+      drawRoom6();
+    }
+  }
   hour = hour();
   minute = minute();
   second = second();
@@ -138,7 +180,7 @@ void mouseClicked() {
       gameState = 4;
       //paused = true;
       cursor(ARROW);
-      System.out.print("Leaving gameState ");
+      //System.out.print("Leaving gameState ");
       //System.out.println(gameState);
       //System.out.print(withinDoor);
       //System.out.print(withinExit1);
@@ -162,11 +204,11 @@ void mouseClicked() {
   if (withinComputer2 == true) {
     if (mouseButton == LEFT) {
       paused = true;
+      interactedComputer = true;
       if (paused == true) {
         c = "You typed ''11037.''";
         drawText();
         text2 = true;
-        interactedComputer = true;
       }
     }
   }
@@ -180,14 +222,15 @@ void mouseClicked() {
   }
   
   //The exit from Page 2
-  if (withinExit2 == true) {
+  else if (withinExit2 == true) {
     if (mouseButton == LEFT) {
       gameState = 1;
       cursor(ARROW);
     }
   }
   
-  if (withinHouses == true) {
+  //Page 3 GUI functions
+  else if (withinHouses == true) {
     if (mouseButton == LEFT) {
       paused = true;
       interactedHouses = true;
@@ -199,29 +242,82 @@ void mouseClicked() {
   
   else if (text2 == true && interactedHouses == true) {
     paused = true;
-    interactedHouses = true;
     c = "They look nice.";
     drawText();
     text2 = false;
+    text3 = true;
   }
   
   else if (text3 == true && interactedHouses == true) {
     paused = true;
-    text2 = false;
+    text3 = false;
     c = "...ish.";
     drawText();
   }
   
+  else if (withinClouds == true) {
+    if (mouseButton == LEFT) {
+      paused = true;
+      c = "They're just clouds.";
+      drawText();
+    }
+  }
+  
+  else if (withinStable == true) {
+    if (mouseButton == LEFT) {
+      paused = true;
+      c = "It's just a stable. Nothing more, nothing less.";
+      drawText();
+    }
+  }
+  
+  else if (withinClocktower == true) {
+    if (mouseButton == LEFT) {
+      paused = true;
+      c = "It's a clock tower.";
+      drawText();
+    }
+  }
+  
+  else if (withinSun == true) {
+    if (mouseButton == LEFT) {
+      paused = true;
+      c = "You're not sure why you're able to look at the sun,";
+      drawText();
+      text2 = true;
+      interactedSun = true;
+    }
+  }
+  
+  else if (interactedSun == true && text2 == true) {
+    if (mouseButton == LEFT) {
+      paused = true;
+      c = "or why it's so big,";
+      drawText();
+      text2 = false;
+      text3 = true;
+    }
+  }
+  
+  else if (interactedSun == true && text3 == true) {
+    if (mouseButton == LEFT) {
+      paused = true;
+      c = "but it's probably best that you don't question it.";
+      drawText();
+      text3 = false;
+    }
+  }
+  
   //The exit from Page 3
-  if (withinExit3 == true) {
+  else if (withinExit3 == true) {
     if (mouseButton == LEFT) {
       gameState = 1;
       cursor(ARROW);
     }
   }
   
-  //The exit from Page 4
-  if (withinExit1 == true) {
+  //Go to the bedroom from Page 4
+  else if (withinExit1 == true) {
     if (mouseButton == LEFT) {
       gameState = 1;
       //paused = true;
@@ -233,8 +329,38 @@ void mouseClicked() {
     }
   }
   
+  //Go to the kitchen from Page 4
+  else if (withinKitchen == true) {
+    if (mouseButton == LEFT) {
+      gameState = 5;
+      //paused = true;
+      cursor(ARROW);
+      //System.out.print("Leaving gameState ");
+      //System.out.println(gameState);
+      //System.out.print(withinDoor);
+      //System.out.print(withinExit1);
+    }
+  }
+  
+  //Go to the bathroom from Page 4
+  else if (withinBathroom == true) {
+    if (mouseButton == LEFT) {
+      gameState = 6;
+      //paused = true;
+      cursor(ARROW);
+      //System.out.print("Leaving gameState ");
+      //System.out.println(gameState);
+      //System.out.print(withinDoor);
+      //System.out.print(withinExit1);
+    }
+  }
+  
   else {
     interactedComputer = false;
+    interactedHouses = false;
+    interactedSun = false;
+    text2 = false;
+    text3 = false;
   }
 }
 

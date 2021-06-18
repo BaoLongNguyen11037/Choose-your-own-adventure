@@ -1,7 +1,12 @@
 boolean withinExit3 = false;
 boolean withinHouses = false;
+boolean withinClouds = false;
+boolean withinStable = false;
+boolean withinSun = false;
+boolean withinClocktower = false;
 
 boolean interactedHouses = false;
+boolean interactedSun = false;
 
 void drawPage3() {
   //Highlight Box for the Exits
@@ -12,8 +17,25 @@ void drawPage3() {
   int[] highlightBox2Y = { height*0/1000, height };
   
   //Highlight Box for the Houses
-  int[] highlightBox3X = { width*462/1000, width*638/1000 };
-  int[] highlightBox3Y = { height*0/1000, height*0/1000 };
+  int[] highlightBox3X = { width*462/1000, width*661/1000 };
+  int[] highlightBox3Y = { height*638/1000, height*810/1000 };
+  
+  //Highlight Box for the Clouds
+  int[] highlightBox4X = { width*347/1000, width*680/1000 };
+  int[] highlightBox4Y = { height*304/1000, height*465/1000 };
+  
+  //Highlight Box for the Stable
+  int[] highlightBox5X = { width*300/1000, width*425/1000 };
+  int[] highlightBox5Y = { height*640/1000, height*810/1000 };
+  
+  //Highlight Box for the Clock Tower
+  int[] highlightBox6X = { width*424/1000, width*450/1000 };
+  int[] highlightBox6Y = { height*555/1000, height*768/1000 };
+  
+  //Highlight Box for the Sun
+  int[] highlightBox7X = { width*276/1000, width*376/1000 };
+  int[] highlightBox7Y = { height*132/1000, height*300/1000 };
+  
   
   drawSky();
   drawClouds();
@@ -48,8 +70,48 @@ void drawPage3() {
     if (paused == false) { //Makes sure you're not currently interacting with the clock
       cursor(HAND);
       noFill(); //Drawing the highlight box
-      quad(highlightBox2X[0], highlightBox2Y[0], highlightBox2X[1], highlightBox2Y[0], highlightBox2X[1], highlightBox2Y[1], highlightBox2X[0], highlightBox2Y[1]);
+      quad(highlightBox3X[0], highlightBox3Y[0], highlightBox3X[1], highlightBox3Y[0], highlightBox3X[1], highlightBox3Y[1], highlightBox3X[0], highlightBox3Y[1]);
       c = "Look at the houses.";
+      drawText();
+    }
+  }
+  else if (mouseX < highlightBox4X[1] && mouseX > highlightBox4X[0] && mouseY > highlightBox4Y[0] && mouseY < highlightBox4Y[1]) {
+    withinClouds = true;
+    if (paused == false) { //Makes sure you're not currently interacting with the clock
+      cursor(HAND);
+      noFill(); //Drawing the highlight box
+      quad(highlightBox4X[0], highlightBox4Y[0], highlightBox4X[1], highlightBox4Y[0], highlightBox4X[1], highlightBox4Y[1], highlightBox4X[0], highlightBox4Y[1]);
+      c = "Look at the clouds.";
+      drawText();
+    }
+  }
+  else if (mouseX < highlightBox5X[1] && mouseX > highlightBox5X[0] && mouseY > highlightBox5Y[0] && mouseY < highlightBox5Y[1]) {
+    withinStable = true;
+    if (paused == false) { //Makes sure you're not currently interacting with the clock
+      cursor(HAND);
+      noFill(); //Drawing the highlight box
+      quad(highlightBox5X[0], highlightBox5Y[0], highlightBox5X[1], highlightBox5Y[0], highlightBox5X[1], highlightBox5Y[1], highlightBox5X[0], highlightBox5Y[1]);
+      c = "Look at the stable.";
+      drawText();
+    }
+  }
+  else if (mouseX < highlightBox6X[1] && mouseX > highlightBox6X[0] && mouseY > highlightBox6Y[0] && mouseY < highlightBox6Y[1]) {
+    withinClocktower = true;
+    if (paused == false) { //Makes sure you're not currently interacting with the clock
+      cursor(HAND);
+      noFill(); //Drawing the highlight box
+      quad(highlightBox6X[0], highlightBox6Y[0], highlightBox6X[1], highlightBox6Y[0], highlightBox6X[1], highlightBox6Y[1], highlightBox6X[0], highlightBox6Y[1]);
+      c = "Look at the clock tower";
+      drawText();
+    }
+  }
+  else if (mouseX < highlightBox7X[1] && mouseX > highlightBox7X[0] && mouseY > highlightBox7Y[0] && mouseY < highlightBox7Y[1]) {
+    withinSun = true;
+    if (paused == false) { //Makes sure you're not currently interacting with the clock
+      cursor(HAND);
+      noFill(); //Drawing the highlight box
+      quad(highlightBox7X[0], highlightBox7Y[0], highlightBox7X[1], highlightBox7Y[0], highlightBox7X[1], highlightBox7Y[1], highlightBox7X[0], highlightBox7Y[1]);
+      c = "Look at the sun.";
       drawText();
     }
   }
@@ -57,6 +119,10 @@ void drawPage3() {
     if (paused == false) {
       withinExit3 = false;
       withinHouses = false;
+      withinClouds = false;
+      withinStable = false;
+      withinClocktower = false;
+      withinSun = false;
     }
     cursor(ARROW);
   }
@@ -89,7 +155,7 @@ void drawClouds() {
 
   //Cloud3 Variables (ditto)
   int[] cloud3X = { width*500/1000, width*525/1000 };
-  int cloud3Y = width*250/1000;
+  int cloud3Y = height*427/1000;
   int[] cloud3W = { width*84/1000, width*109/1000 };
   int[] cloud3H = { height*77/1000, height*68/1000 };
   
@@ -113,7 +179,7 @@ void drawSun() {
   int sunX = width*325/1000;
   int sunY = height*213/1000;
   int sunW = width*106/1000;
-  int sunH = width*106/1000;
+  int sunH = height*181/1000;
   
   //Drawing the Sun
   fill(sunColor);  

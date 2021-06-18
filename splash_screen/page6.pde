@@ -1,0 +1,6 @@
+
+
+void drawRoom6() {
+  
+  
+}
