@@ -16,28 +16,9 @@ void drawLines5() {
   line(207, 0, 207, 496);
   line(817, 0, 817, 496);
 
-  fill(-3394765);
-  translate(672, 393);
-  rotate(0.0);
-  ellipse(0,0,7, 7);
-
-  fill(-16777216);
-  translate(755, 465);
-  beginShape();
-  vertex(0, 0);
-  vertex(-72, 0);
-  vertex(-72, 41);
-  vertex(0, 41);
-  endShape(CLOSE);
 
   fill(-3342337);
-  translate(962, 476);
-  beginShape();
-  vertex(10, -10);
-  vertex(10, -93);
-  vertex(-93, -134);
-  vertex(-93, -62);
-  endShape(CLOSE);
+  quad(972, 466, 972, 383, 879, 342, 879, 414);
 
   fill(-5000269);
   translate(931, 465);
@@ -142,6 +123,11 @@ void drawOven() {
   fill(-1);
   quad(662, 382, 755, 382, 755, 403, 662, 403);
   
+  fill(-3394765);
+  ellipse(672, 393, 7, 7);
+  
+  fill(-16777216);
+  quad(755, 465, 683, 465, 683, 506, 755, 506);
   
 }
 
@@ -158,5 +144,10 @@ void drawCupboard() {
 
   fill(-5026534);
   quad(859, 207, 818, 197, 569, 197, 569, 207);
+  
+}
+
+void drawWindow5() {
+  
   
 }
