@@ -31,7 +31,7 @@ void drawRoom1() {
   
   int[] highlightBox5X = { width*670/1000, width*879/1000 };
   int[] highlightBox5Y = { height*657/1000, height*846/1000 };
-  
+  stroke(0);
   roomLines();
   doorDraw();
   drawWindow();
@@ -116,10 +116,10 @@ void drawClockText() {
   }
   c = "The time is " + hour + ":" + minute + ":" + second + AMPM + ".";
   fill(lightGray2);
-  rect(0, 500, 1024, 100);
+  rect(width*0, height*833/1000, width, height*167/1000);
   fill(defaultColor);
   textSize(32);
-  text(c, 50, 550);
+  text(c, width*19/1000, height*917/1000);
 }
 
 //void mouseClicked() {
@@ -449,7 +449,7 @@ void drawText() {
   rect(width*0, height*833/1000, width, height*167/1000);
   fill(defaultColor);
   textSize(32);
-  text(c, 50, 550);
+  text(c, width*19/1000, height*917/1000);
 }
 
 //Slope Calculator (y2-y1)/(x2-x1) 

@@ -20,6 +20,7 @@ void drawRoom4() {
   drawDoors();
   drawTable();
   drawCouch();
+  strokeWeight(1);
   if (mouseX > highlightBox1X[0] && mouseX < highlightBox1X[1] && mouseY > highlightBox1Y[0] && mouseY < highlightBox1Y[1]) {
     withinExit1 = true;
     if (paused == false) {

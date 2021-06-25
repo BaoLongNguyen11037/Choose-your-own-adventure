@@ -4,8 +4,8 @@
 color white = #FFFFFF, white2 = #FAFAFA, bgColor = #CCCCCC, lightGray = #a1a1a1, lightGray1 = #989898, lightGray2 = #808080, darkGray = #505050, darkGray1 = #333333, black = #000000,
 
 //Colours
-oak = #BB8141, oak1 = #CC8033, lightBrown = #9B5F42, brown = #724730, brown2 = #994D00, cream = #FFFFCC, yellow = #FFFF4D, gold = #FFD00F, gold1 = #FFFF4D, green = #336633, 
-skyBlue = #6680E6, blue = #08ECFF, darkBlue = #000EFC, beige = #E6E6CC,
+oak = #BB8141, oak1 = #CC8033, lightBrown = #9B5F42, brown = #724730, brown2 = #994D00, hazelnut = #B34D1A, cream = #FFFFCC, yellow = #FFFF4D, gold = #FFD00F, gold1 = #FFFF4D, green = #336633, 
+skyBlue = #6680E6, blue = #08ECFF, darkBlue = #000EFC, beige = #E6E6CC, lava = #CC3333,
 
 //Assigning Variables
 
@@ -22,13 +22,22 @@ barnroofColor = darkGray, houseroofColor = black, housewallColor = beige,
 
 //Page 4
 deskColor3 = brown, standColor = lightGray2, shadeColor = cream, couchbaseColor = darkGray1, couchbackColor = black, couchcushionColor = lightGray2,
-doorpanelColor = oak, doorknobColor = gold;
+doorpanelColor = oak, doorknobColor = gold,
+
+//Page 5
+doorColor5 = brown, doorWindow5 = skyBlue, doorKnob5 = gold, counterwoodColor = hazelnut, countertopColor = darkGray,
+ovenColor = white, ovenlightColor = lava, ovenwindowColor = black,
+cupboardColor = hazelnut, sinkColor5 = lightGray, tableColor5 = oak1, faucetColor5 = lightGray2;
+
+//Importing a PShape
+PImage poster1;
+PImage page7;
 
 int textY = 0;
 float textMoveY = 1.5;
 float alphaVar = 0;
 float alphaVar2 = 0;
-int gameState = 5;
+int gameState = 8;
 float timer = 60;
 
 boolean misclicked = false;
@@ -44,9 +53,23 @@ int hour = hour();
 int minute = minute();
 int second = second();
 
+//This prevents the creation of infinite items
+int frozenLasagnacount = 1;
+int cookedLasagnacount = 0;
+
+
+//Inventory System (collectibles)
+boolean hasfrozenLasagna = false;
+boolean hascookedLasagna = false;
+boolean haseatenLasagna = false;
+
+boolean hasKeys = false;
+
 void setup() {
   size(1024, 600);
   frameRate(120);
+  poster1 = loadImage("mercerskitchen.png");
+  page7 = loadImage("testpage7.png");
 }
 
 void draw() {
@@ -114,6 +137,8 @@ void draw() {
     if (paused == false) {
       withinDoor = false;
       withinExit1 = false;
+      withinExit5 = false;
+      withinKitchen = false;
       background(#CCCCCC);
       drawRoom4();
     }
@@ -122,7 +147,8 @@ void draw() {
     //System.out.print(gameState);
     //System.out.print(interactedDoor); //Debugging: State of the exits
     if (paused == false) {
-      
+      withinExit5 = false;
+      withinKitchen = false;
       background(#CCCCCC);
       drawRoom5();
     }
@@ -142,12 +168,22 @@ void draw() {
     if (paused == false) {
       
       background(#CCCCCC);
-      drawRoom6();
+      drawRoom7();
+    }
+  }
+  if (gameState == 8) {
+    //System.out.print(gameState);
+    //System.out.print(interactedDoor); //Debugging: State of the exits
+    if (paused == false) {
+      
+      background(#CCCCCC);
+      drawPage8();
     }
   }
   hour = hour();
   minute = minute();
   second = second();
+  
 }
 
 void mouseClicked() {
@@ -345,7 +381,7 @@ void mouseClicked() {
   //Go to the bathroom from Page 4
   else if (withinBathroom == true) {
     if (mouseButton == LEFT) {
-      gameState = 6;
+      //gameState = 6;
       //paused = true;
       cursor(ARROW);
       //System.out.print("Leaving gameState ");
@@ -355,10 +391,116 @@ void mouseClicked() {
     }
   }
   
+  //Page 5 GUI functions
+  else if (withinExit5 == true) {
+    if (mouseButton == LEFT) {
+      gameState = 4;
+      cursor(ARROW);
+    }
+  }
+  else if (withinPoster == true) {
+    if (mouseButton == LEFT) {
+      paused = true;
+      cursor(ARROW);
+      c = "It's a poster of a high quality kitchen utensil brand.";
+      drawText();
+    }
+  }
+  else if (withinOven == true && hasfrozenLasagna == false) {
+    if (mouseButton == LEFT) {
+      paused = true;
+      cursor(ARROW);
+      c = "You don't have anything to make in the oven right now.";
+      drawText();
+    }
+  }
+  else if (withinOven == true && hasfrozenLasagna == true) {
+    if (mouseButton == LEFT) {
+      paused = true;
+      cursor(ARROW);
+      c = "You put the Lasagna in the oven and cooked it.";
+      drawText();
+      hascookedLasagna = true;
+      hasfrozenLasagna = false;
+      cookedLasagnacount += 1;
+    }
+  }
+  else if (withinTable == true && hascookedLasagna == false) {
+    if (mouseButton == LEFT) {
+      paused = true;
+      cursor(ARROW);
+      c = "You don't have anything to eat right now, and there's no chairs.";
+      drawText();
+      interactedTable = true;
+    }
+  }
+  else if (withinTable == true && hascookedLasagna == true) {
+    if (mouseButton == LEFT) {
+      interactedTable = true;
+      paused = true;
+      cursor(ARROW);
+      c = "You stood at the table and ate the lasagna.";
+      drawText();
+      hascookedLasagna = false;
+      text2 = true;
+    }
+  }
+  else if (interactedTable == true && text2 == true) {
+    paused = true;
+    text2 = false;
+    c = "You feel satisfied.";
+    drawText();
+  }
+  else if (withinFridge == true) {
+    if (mouseButton == LEFT) {
+      paused = true;
+      cursor(ARROW);
+      c = "You opened the fridge.";
+      drawText();
+      text2 = true;
+      interactedFridge = true;
+    }
+  }
+  else if (interactedFridge == true && text2 == true) {
+    paused = true;
+    if (frozenLasagnacount == 1) {
+      c = "You found some lasagna.";
+      drawText();
+      hasfrozenLasagna = true;
+      frozenLasagnacount -= 1;
+    }
+  else if (frozenLasagnacount < 1) {
+    c = "There's no more food.";
+    drawText();
+  }
+  text2 = false;
+    interactedFridge = false;
+  }
+  
+  //Page 7 Gui Functions
+  else if (withinExit7 == true) {
+    if (mouseButton == LEFT) {
+      gameState = 4;
+    }
+  }
+  else if (withinExithouse == true && haseatenLasagna == false) {
+    if (mouseButton == LEFT) {
+      c = "You haven't even made your food yet.";
+      drawText();
+    }
+  }
+  else if (withinExithouse == true && haseatenLasagna == true) {
+    if (mouseButton == LEFT) {
+      gameState = 8;
+    }
+  }
+  
   else {
     interactedComputer = false;
     interactedHouses = false;
     interactedSun = false;
+    interactedFridge = false;
+    interactedTable = false;
     text2 = false;
     text3 = false;
   }
