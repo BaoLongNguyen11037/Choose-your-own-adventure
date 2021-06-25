@@ -37,7 +37,7 @@ int textY = 0;
 float textMoveY = 1.5;
 float alphaVar = 0;
 float alphaVar2 = 0;
-int gameState = 8;
+int gameState = 0;
 float timer = 60;
 
 boolean misclicked = false;
