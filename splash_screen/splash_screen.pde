@@ -138,7 +138,9 @@ void draw() {
       withinDoor = false;
       withinExit1 = false;
       withinExit5 = false;
+      withinExit7 = false;
       withinKitchen = false;
+      withinLivingroom = false;
       background(#CCCCCC);
       drawRoom4();
     }
@@ -166,7 +168,8 @@ void draw() {
     //System.out.print(gameState);
     //System.out.print(interactedDoor); //Debugging: State of the exits
     if (paused == false) {
-      
+      withinExit7 = false;
+      withinLivingroom = false;
       background(#CCCCCC);
       drawRoom7();
     }
@@ -390,6 +393,18 @@ void mouseClicked() {
       //System.out.print(withinExit1);
     }
   }
+  //Go to the living room from Page 4
+  else if (withinLivingroom == true) {
+    if (mouseButton == LEFT) {
+      gameState = 7;
+      //paused = true;
+      cursor(ARROW);
+      //System.out.print("Leaving gameState ");
+      //System.out.println(gameState);
+      //System.out.print(withinDoor);
+      //System.out.print(withinExit1);
+    }
+  }
   
   //Page 5 GUI functions
   else if (withinExit5 == true) {
@@ -449,6 +464,7 @@ void mouseClicked() {
     paused = true;
     text2 = false;
     c = "You feel satisfied.";
+    haseatenLasagna = true;
     drawText();
   }
   else if (withinFridge == true) {
